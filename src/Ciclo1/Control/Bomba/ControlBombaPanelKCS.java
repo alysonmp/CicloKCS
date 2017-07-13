@@ -5,9 +5,9 @@
  */
 package Ciclo1.Control.Bomba;
 
-import Ciclo2.Model.Ciclo2.ModelBomba;
-import Ciclo2.Model.Ciclo2.ModelMassa;
-import Ciclo2.View.Bomba.ViewBombaPanelRankine;
+import Ciclo1.Model.Ciclo2.ModelBomba;
+import Ciclo1.Model.Ciclo2.ModelMassa;
+import Ciclo1.View.Bomba.ViewBombaPanelRankine;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;

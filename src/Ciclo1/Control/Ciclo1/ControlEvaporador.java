@@ -22,7 +22,6 @@ public class ControlEvaporador {
         
         ControlH_Sistemamix sistemamix = new ControlH_Sistemamix(TbolA, P1, Pref, Tref, zi, session);
         ControlCalor calor = new ControlCalor(compressor, Tf, Tf2, session);
-        ControlTSaida tsaida = new ControlTSaida(compressor, Tf, QTf, session);
         
         double EntEVP = H1 - sistemamix.getHL();
         
@@ -32,6 +31,13 @@ public class ControlEvaporador {
         
         double m = calor.getQfon1()/EntEVP;
         QTf = m*(H1-H12);
+        
+        ControlTSaida tsaida = new ControlTSaida(compressor, Tf, QTf, session);
+        if(tsaida.getTfout()<T12+5){
+            //jdjdjd*kdkdkdk;
+            //break;
+        }
+        
         
         //if vazio
         //if(Tfout < T12+5)

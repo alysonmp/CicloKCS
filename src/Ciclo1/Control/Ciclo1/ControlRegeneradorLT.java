@@ -70,7 +70,7 @@ public class ControlRegeneradorLT {
         
         while(erro1 >= 0.001){
             it = it+1;
-            if(it > 1000){
+            if(it > 300){
                 //hshshsh*ksksks
             }
             if(Test >= Torv8){

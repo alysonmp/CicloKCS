@@ -31,11 +31,11 @@ public class ControlCompequi {
             
             teste = (conequi.getKi()*zi)+(conequi.getKj()*zj);
             erro = Math.abs((1-teste)/1);
-            if(erro > 0.0001 && teste < 1){
+            if(erro > 0.0001 & teste < 1){
                 zi = zi+Dzi;
                 Dzi = Dzi/2;
             }else{ 
-                if(erro > 0.0001 && teste > 1){
+                if(erro > 0.0001 & teste > 1){
                     zi = zi-Dzi;
                     Dzi = Dzi/2;
                 }

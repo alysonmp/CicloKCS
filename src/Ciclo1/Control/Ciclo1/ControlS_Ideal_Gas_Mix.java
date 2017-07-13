@@ -5,7 +5,7 @@
  */
 package Ciclo1.Control.Ciclo1;
 
-import Ciclo2.Model.ModelConstantesRankineMat;
+import Ciclo1.Model.ModelConstantesRankineMat;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -38,8 +38,8 @@ public class ControlS_Ideal_Gas_Mix {
         Sigj=((valores[0][0]*Math.log(T)+valores[0][1]*T+(valores[0][2]/2)*(Math.pow(T, 2))+(valores[0][3]/3)*(Math.pow(T, 3))+(valores[0][4]/4)*(Math.pow(T, 4)))- (valores[0][0]*Math.log(Tref)+valores[0][1]*Tref+(valores[0][2]/2)*(Math.pow(Tref, 2))+(valores[0][3]/3)*(Math.pow(Tref, 3))+(valores[0][4]/4)*(Math.pow(Tref, 4))))-(R*(Math.log(zj)));
         
         //%temperatura de 100K atÈ 1500K
-        
-        //Cpi = cc(2,1)+cc(2,2)*T+cc(2,3)*T^2+cc(2,4)*T^3+cc(2,5)*T^4;
+       
+        //Cpi=cc(2,1)+cc(2,2)*T+cc(2,3)*T^2+cc(2,4)*T^3+cc(2,5)*T^4;
         Cpi = valores[1][0]+valores[1][1]*T+valores[1][2]*Math.pow(T, 2)+valores[1][3]*Math.pow(T, 3)+valores[1][4]*Math.pow(T, 4);
         //Sigi=((cc(2,1)*log(T)+cc(2,2)*T+(cc(2,3)/2)*(T^2)+(cc(2,4)/3)*(T^3)+(cc(2,5)/4)*(T^4))- (cc(2,1)*log(Tref)+cc(2,2)*Tref+(cc(2,3)/2)*(Tref^2)+(cc(2,4)/3)*(Tref^3)+(cc(2,5)/4)*(Tref^4)))-(R*(log(zi)));
         Sigi = ((valores[1][0]*Math.log(T)+valores[1][1]*T+(valores[1][2]/2)*(Math.pow(T, 2))+(valores[1][3]/3)*(Math.pow(T, 3))+(valores[1][4]/4)*(Math.pow(T, 4)))-(valores[1][0]*Math.log(Tref)+valores[1][1]*Tref+(valores[1][2]/2)*(Math.pow(Tref, 2))+(valores[1][3]/3)*(Math.pow(Tref, 3))+(valores[1][4]/4)*(Math.pow(Tref, 4))))-(R*(Math.log(zi)));

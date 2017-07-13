@@ -59,12 +59,12 @@ public class ViewBombaImage extends JPanel{
                 int x = (int) (ctrlPrincipal.getViewPrincipal().getPainelLateral().getWidth()*0.9);
                 int y = (int) (ctrlPrincipal.getViewPrincipal().getPainelLateral().getHeight()*0.86);
                 
-                ControlBombaPanelRankine Bomba = new ControlBombaPanelRankine(ViewBombaImage.this.ctrlPrincipal.getSession());
+                ControlBombaPanelKCS Bomba = new ControlBombaPanelKCS(ViewBombaImage.this.ctrlPrincipal.getSession());
                 Bomba.getViewBomba().setPreferredSize(new Dimension(x, y));
                 ViewBombaImage.this.ctrlPrincipal.getViewPrincipal().getTabbedPanel().addTab("Bomba", null, Bomba.getViewBomba());
                 ViewBombaImage.this.ctrlPrincipal.getViewPrincipal().getTabbedPanel().setSelectedComponent(Bomba.getViewBomba());
                 ViewBombaImage.this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
-                Bomba.criaComboBoxes();
+                //Bomba.criaComboBoxes();
             }
 
             //NÃO UTILIZADOS

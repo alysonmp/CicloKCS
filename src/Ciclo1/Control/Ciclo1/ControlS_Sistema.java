@@ -30,4 +30,22 @@ public class ControlS_Sistema {
         SL = -SDrefL+Sig+SDL;
         SV = -SDrefL+Sig+SDV;
     }
+
+    public double getSL() {
+        return SL;
+    }
+
+    public void setSL(double SL) {
+        this.SL = SL;
+    }
+
+    public double getSV() {
+        return SV;
+    }
+
+    public void setSV(double SV) {
+        this.SV = SV;
+    }
+
+    
 }

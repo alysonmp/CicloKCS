@@ -45,7 +45,7 @@ public class ControlValvula {
         
         while(erro > 0.001){
             it = it+1;
-            if(it > 1000){
+            if(it > 300){
                 //kkkkk=kkkkk*PPPPPP
                 //%break
             }
@@ -87,7 +87,7 @@ public class ControlValvula {
                 HSistemamix = new ControlH_Sistemamix(Test, P5, Pref, Tref, yi5, session);
                 HL5 = HSistemamix.getHL();
                 HV = HSistemamix.getHV();
-                
+                // H=(HV5*xx5)+(HL6*(1-xx5));
                 H = (HV5*xx5)+(HL6*(1-xx5));
                 erro = Math.abs((H5-H)/H5);
                 burbuja = H5-H;

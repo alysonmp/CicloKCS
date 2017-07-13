@@ -27,7 +27,7 @@ public class ControlIsoentropiaTurbina {
         it = 0;
         while(erro>= 0.001){
             it += 1;
-            if(it > 1000){
+            if(it > 300){
                // eheheh*kekeke
             }
             if(Test >= torvalho.getTorv()){

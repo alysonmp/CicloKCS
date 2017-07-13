@@ -101,6 +101,12 @@ public class ControlFugmix {
         
         //phiv_j=(exp((log(vmv/(vmv-bm)))+((bm+bpj)/(vmv-bm))+((apj*D1_v)/(R*T))+((am/(R*T))*F1v_j)-log(Zvm)))*(1-zi)*P;
         phiv_j = (Math.exp((Math.log(vmv/(vmv-constantesMix.getbm())))+((constantesMix.getbm()+bpj)/(vmv-constantesMix.getbm()))+((apj*D1_v)/(constantes.getR()*T))+((constantesMix.getam()/(constantes.getR()*T))*F1v_j)-Math.log(zetamix.getZv())))*(1-zi)*P;
+
+        
+        //function [phil_i, phiv_i, phil_j, phiv_j] = fugmix(T, P, zi)
+
+        //[Zlm, Zvm, Zm] = Zetamix(Am, Bm, Cm);
+        
     }
 
     public double getPhil_i() {

@@ -5,14 +5,10 @@
  */
 package Ciclo1.Control.Ciclo1;
 
-import Ciclo2.Model.Ciclo2.ModelFluidos;
-import Ciclo2.Model.ModelConstantesRankineMat;
-import Ciclo2.Util.HibernateUtil;
+import Ciclo1.Model.ModelConstantesRankineMat;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 
 /**
  *

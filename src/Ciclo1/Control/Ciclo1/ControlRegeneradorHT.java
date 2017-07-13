@@ -36,7 +36,7 @@ public class ControlRegeneradorHT {
         it = 0;
         while(erro1 >= 0.001){
             it = it+1;
-            if(it > 100){
+            if(it > 300){
                  //hshshsh*ksksks
             }
             if(Test >= Torv12){

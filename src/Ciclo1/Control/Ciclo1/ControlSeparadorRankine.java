@@ -32,5 +32,71 @@ public class ControlSeparadorRankine {
         ControlFlash flash = new ControlFlash(P1, T1, zi, session);
         
         H1 = (flash.getVF()*H2)+((1-flash.getVF())*H3);
-    }   
+    }  
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getYi() {
+        return yi;
+    }
+
+    public void setYi(double yi) {
+        this.yi = yi;
+    }
+
+    public double getH3() {
+        return H3;
+    }
+
+    public void setH3(double H3) {
+        this.H3 = H3;
+    }
+
+    public double getH2() {
+        return H2;
+    }
+
+    public void setH2(double H2) {
+        this.H2 = H2;
+    }
+
+    public double getH1() {
+        return H1;
+    }
+
+    public void setH1(double H1) {
+        this.H1 = H1;
+    }
+
+    public double getT3() {
+        return T3;
+    }
+
+    public void setT3(double T3) {
+        this.T3 = T3;
+    }
+
+    public double getT2() {
+        return T2;
+    }
+
+    public void setT2(double T2) {
+        this.T2 = T2;
+    }
+
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
+    
+    
 }

@@ -21,4 +21,28 @@ public class ControlCondensador {
         ControlH_Sistemamix HSistemamix = new ControlH_Sistemamix(T9, P9, Pref, Tref, zi, session);
         H9 = HSistemamix.getHL();
     }
+
+    public double getP9() {
+        return P9;
+    }
+
+    public void setP9(double P9) {
+        this.P9 = P9;
+    }
+
+    public double getT9() {
+        return T9;
+    }
+
+    public void setT9(double T9) {
+        this.T9 = T9;
+    }
+
+    public double getH9() {
+        return H9;
+    }
+
+    public void setH9(double H9) {
+        this.H9 = H9;
+    }
 }

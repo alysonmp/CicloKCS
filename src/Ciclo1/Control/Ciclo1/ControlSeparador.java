@@ -11,12 +11,12 @@ import org.hibernate.Session;
  *
  * @author alysonmp
  */
-public class ControlSeparadorRankine {
+public class ControlSeparador {
     
-    double x, yi, H3, H2, H1, T3, T2;
+    double x, yi, H3, H2, H1, T3, T2, VF;
     private Session session;
     
-    public ControlSeparadorRankine(double P1, double T1, double zi, double Pref, double Tref, Session session){
+    public ControlSeparador(double P1, double T1, double zi, double Pref, double Tref, Session session){
         this.session = session;
         
         T2 = T1;
@@ -31,7 +31,9 @@ public class ControlSeparadorRankine {
         
         ControlFlash flash = new ControlFlash(P1, T1, zi, session);
         
-        H1 = (flash.getVF()*H2)+((1-flash.getVF())*H3);
+        VF = flash.getVF();
+        
+        H1 = (VF*H2)+((1-VF)*H3);
     }  
 
     public double getX() {
@@ -96,6 +98,14 @@ public class ControlSeparadorRankine {
 
     public void setSession(Session session) {
         this.session = session;
+    }
+
+    public double getVF() {
+        return VF;
+    }
+
+    public void setVF(double VF) {
+        this.VF = VF;
     }
     
     

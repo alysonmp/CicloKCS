@@ -628,6 +628,8 @@ public class ControlPrincipal {
                  (int)(this.getViewPrincipal().getFramePrincipal().getWidth()*0.035), (int)(this.getViewPrincipal().getFramePrincipal().getHeight()*0.04));
         
         viewPrincipal.getFramePrincipal().repaint();
+        
+        Start start = new Start(session);
     }
     
     //FUNÇÃO QUE EDITA OS JPANELS ONDE SERÃO MOSTRADOS OS CICLOS E OS INSERE NO PAINEL

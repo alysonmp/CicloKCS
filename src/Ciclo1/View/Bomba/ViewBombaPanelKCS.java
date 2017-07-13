@@ -5,7 +5,7 @@
  */
 package Ciclo1.View.Bomba;
 
-import Ciclo2.Control.Bomba.ControlBombaPanelRankine;
+import Ciclo1.Control.Bomba.ControlBombaPanelKCS;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -30,7 +30,7 @@ public class ViewBombaPanelKCS extends JPanel{
     
     private JPanel painelDados;
     
-    public ViewBombaPanelKCS(ControlBombaPanelRankine ctrlBomba){
+    public ViewBombaPanelKCS(ControlBombaPanelKCS ctrlBomba){
         painelDados = new JPanel(new GridBagLayout());
         
         this.setLayout(new FlowLayout(FlowLayout.LEADING));

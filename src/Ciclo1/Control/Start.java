@@ -30,23 +30,23 @@ public class Start {
     
     int compressor;
     
-    public Start(Session session){
+    public Start(Session session,ControlPrincipal ctrPrincipal){
         this.session = session;
         
-        P1 = 20;
-        PP = 2;
-        SUBT = 0;
-        Tf = 415.15;
-        Tres = 298.15;
-        compressor = 1;
-        effLT = 0.1;
-        zi = 0.8;
-        VE = 0.5;
+        P1 = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtP1().getText());
+        PP = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtPP().getText());
+        SUBT = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtSUBT().getText());
+        Tf = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtTf().getText());
+        Tres = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtTres().getText());
+        compressor = Integer.parseInt(ctrPrincipal.getViewPrincipal().getTxtCompressor().getText());
+        effLT = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxteffLt().getText());
+        zi = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtzi().getText());
+        VE = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtVE().getText());
         
         P2 = P1;
         Pf = 4000/100; //%bar
 
-        ControlParametros parametros = new ControlParametros(P1, Tf, Pf, zi, Tres, this.session);
+        ControlParametros parametros = new ControlParametros(P1, Tf, Pf, zi, Tres, this.session, ctrPrincipal);
         
         DT1=(parametros.getTorvA()-parametros.getTbolA())-1;
         T1=parametros.getTbolA()+(DT1*VE);
@@ -151,5 +151,15 @@ public class Start {
         double QTf = evaporador.getQTf();
         
         ec=Wn/QTf;
+        
+        
+        ctrPrincipal.getViewPrincipal().getTxtteste1().setText("Ec: "+ec);
+        ctrPrincipal.getViewPrincipal().getTxtteste2().setText("QLHR: "+QLHR);
+        ctrPrincipal.getViewPrincipal().getTxtteste3().setText("QHHR: "+QHHR);
+        ctrPrincipal.getViewPrincipal().getTxtteste2().setText("Qcon: "+Qcon);
+        ctrPrincipal.getViewPrincipal().getTxtteste3().setText("Qsen: "+Qsen);
+        ctrPrincipal.getViewPrincipal().getTxtteste2().setText("Qlat: "+Qlat);
+        ctrPrincipal.getViewPrincipal().getTxtteste3().setText("Tfout: "+Tfout);
+        ctrPrincipal.getViewPrincipal().getTxtteste2().setText("T9: "+T9);
     }
 }

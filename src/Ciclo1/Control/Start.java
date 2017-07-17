@@ -17,6 +17,7 @@ import Ciclo1.Control.Ciclo1.ControlRegeneradorLT;
 import Ciclo1.Control.Ciclo1.ControlSeparador;
 import Ciclo1.Control.Ciclo1.ControlTurbina;
 import Ciclo1.Control.Ciclo1.ControlValvula;
+import javax.swing.JOptionPane;
 import org.hibernate.Session;
 
 /**
@@ -52,8 +53,7 @@ public class Start {
         T1=parametros.getTbolA()+(DT1*VE);
 
         if(Tf-5<T1){
-            //jdjdjdjdj*kdkdkd;
-            System.out.println("erro");
+            JOptionPane.showMessageDialog(null,"Erro start","Error",0);
         }
 
         double Beff = parametros.getBeff();
@@ -64,6 +64,10 @@ public class Start {
         
         //ControlBomba bomba = new ControlBomba(0.8, 20, 11.8076, 313.15, 50, 273.15, 0.8, session);
         ControlBomba bomba = new ControlBomba(Beff, P1, Pcon, Tcon, Pref, Tref, zi, session);
+        if(!bomba.getMensagem().equals("")){
+            JOptionPane.showMessageDialog(null,bomba.getMensagem(),"Error",0);
+            return;
+        }
         
         //ControlSeparador separador = new ControlSeparador(P1, 378.3645, zi, Pref, Tref, session);
         ControlSeparador separador = new ControlSeparador(P1, T1, zi, Pref, Tref, session);
@@ -100,7 +104,11 @@ public class Start {
         
         //ControlRegeneradorLT regeneradorLT = new ControlRegeneradorLT(333.6505, 424.0785, 313.1576, 409.5770, P1, H7, H10, 354.7027, T10, Pcon, Pref, Tref, zi, effLT, session);
         ControlRegeneradorLT regeneradorLT = new ControlRegeneradorLT(TbolA, TorvA, TbolB, TorvB, P1, H7, H10, T7, T10, Pcon, Pref, Tref, zi, effLT, session);
-        
+        if(!regeneradorLT.getMensagem().equals("")){
+            JOptionPane.showMessageDialog(null,regeneradorLT.getMensagem(),"Error",0);
+            return;
+        }
+              
         double H3 = separador.getH3();
         double H5 = valvula.getH5();
         double H11 = regeneradorLT.getH11();
@@ -112,6 +120,10 @@ public class Start {
         
         //ControlRegeneradorHT regeneradorHT = new ControlRegeneradorHT(333.6505, 424.0785, 0.7156, 5132.1, 3168.9, 1459, 378.3645, 353.5914, 317.4796, P1, Pref, Tref, zi, session);
         ControlRegeneradorHT regeneradorHT = new ControlRegeneradorHT(TbolA, TorvA, VF1, H3, H5, H11, T3, T5, T11, P1, Pref, Tref, zi, session);
+        if(!regeneradorHT.getMensagem().equals("")){
+            JOptionPane.showMessageDialog(null,regeneradorHT.getMensagem(),"Error",0);
+            return;
+        }
         
         double T8 = regeneradorLT.getT8();
         double P8 = regeneradorLT.getP8();
@@ -129,6 +141,10 @@ public class Start {
         
         //ControlEvaporador evaporador = new ControlEvaporador(333.6505, T12, H12, Tf, P1, zi, Pref, Tref, H1, PP, compressor, session);
         ControlEvaporador evaporador = new ControlEvaporador(TbolA, T12, H12, Tf, P1, zi, Pref, Tref, H1, PP, compressor, session);
+        if(!evaporador.getMensagem().equals("")){
+            JOptionPane.showMessageDialog(null,evaporador.getMensagem(),"Error",0);
+            return;
+        }
         
         double m = evaporador.getM();
         double H9 = condensador.getH9();

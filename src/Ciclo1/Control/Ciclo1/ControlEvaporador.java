@@ -16,6 +16,8 @@ public class ControlEvaporador {
     
     private double m, QTf, Tfout, Qsen, Qlat;
 
+    private String mensagem = "";
+    
     public ControlEvaporador(double TbolA, double T12, double H12, double Tf, double P1, double zi, double Pref, double Tref, double H1, double PP, int compressor, Session session) {
         
         double Tf2 = TbolA + PP;
@@ -26,7 +28,8 @@ public class ControlEvaporador {
         double EntEVP = H1 - sistemamix.getHL();
         
         if(Tf2 > Tf){
-            JOptionPane.showMessageDialog(null,"Wrong number of input arguments","Error",-1);
+            mensagem = "Wrong number of input arguments, ControlEvaporador";
+            return;
         }
         
         m = calor.getQfon1()/EntEVP;
@@ -34,8 +37,8 @@ public class ControlEvaporador {
         
         ControlTSaida tsaida = new ControlTSaida(compressor, Tf, QTf, session);
         if(tsaida.getTfout()<T12+5){
-            //jdjdjd*kdkdkdk;
-            //break;
+            mensagem = "Erro ControlEvaporador";
+            return;
         }
         
         
@@ -45,6 +48,14 @@ public class ControlEvaporador {
         
         Qsen = m*(sistemamix.getHL()-H12);
         Qlat = m*(H1 -sistemamix.getHL());
+    }
+
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
     }
 
     public double getM() {

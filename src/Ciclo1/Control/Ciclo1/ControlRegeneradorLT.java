@@ -16,6 +16,8 @@ public class ControlRegeneradorLT {
     private double P7, P8, P11, P10, P12, it, Tbol11, Torv11, T11, xx11, H11, xi11, yi11, HL, HV11, 
                    HV, HL11, H8, erro1, Tbol8, Torv8, Test, DT, H, burbuja, T8, xi8, yi8, HV8, HL8, xx8;
     
+    private String mensagem = "";
+    
     public ControlRegeneradorLT(double TbolA, double TorvA, double TbolB, double TorvB, double P1, double H7, double H10, double T7, double T10, double Pcon, double Pref, double Tref, double zi, double effLT, Session session){
         
         P7 = Pcon;
@@ -29,7 +31,8 @@ public class ControlRegeneradorLT {
         T11 = T10+(effLT*(T7-T10));
         
         if(T11+5 > T7){
-            //jaljkfsjklfs*jasdkljdsa
+            mensagem = "Erro ControlRegeneradorLT";
+            return;
         }
         
         if(T11 <= Tbol11){
@@ -73,7 +76,8 @@ public class ControlRegeneradorLT {
         while(erro1 >= 0.001){
             it = it+1;
             if(it > 300){
-                //hshshsh*ksksks
+                mensagem = "Erro ControlRegeneradorLT";
+                return;
             }
             if(Test >= Torv8){
                 HSistemamix = new ControlH_Sistemamix(Test, P8, Pref, Tref, zi, session);
@@ -159,12 +163,22 @@ public class ControlRegeneradorLT {
         }
         
         if(T8 < T10+5){
-            //jaljkfsjklfs*jasdkljdsa
+            mensagem = "Erro ControlRegeneradorLT";
+            return;
         }
 
         if(T11 < T10+4){
-            System.out.println("Erro");
+            mensagem = "Erro ControlRegeneradorLT";
+            return;
         }
+    }
+
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
     }
 
     public double getP7() {

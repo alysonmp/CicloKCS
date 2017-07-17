@@ -15,13 +15,16 @@ public class ControlRegeneradorHT {
     
     private double P12, H12, erro1, Tbol12, Torv12, Test, DT, it, H, burbuja, T12, xx12, xi12, yi12, HV, HL, HV12, HL12;
     
+    private String mensagem = "";
+    
     public ControlRegeneradorHT(double TbolA, double TorvA, double VF1, double H3, double H5, double H11, double T3, double T5, double T11, double P1, double Pref, double Tref, double zi, Session session){
         
         P12 = P1;
         H12 = ((H3-H5)*(1-VF1))+H11;
         
         if(T5 < T11+5){
-            //klklkl*JJJJ
+            mensagem = "Erro ControlRegeneradorHT";
+            return;
         }
         erro1 = 1;
         Tbol12 = TbolA;
@@ -37,7 +40,8 @@ public class ControlRegeneradorHT {
         while(erro1 >= 0.001){
             it = it+1;
             if(it > 300){
-                 //hshshsh*ksksks
+                 mensagem = "Erro ControlRegeneradorHT";
+                return;
             }
             if(Test >= Torv12){
                 ControlH_Sistemamix HSistemamix = new ControlH_Sistemamix(Test, P12, Pref, Tref, zi, session);
@@ -124,14 +128,23 @@ public class ControlRegeneradorHT {
         }
 
         if(T12 > T3+5){
-           //jaljkfsjklfs*jasdkljdsa
+           mensagem = "Erro ControlRegeneradorHT";
+           return;
         }
 
         if(T12 < T11+4){
-            //jaljkfsjklfs*jasdkljdsa
+            mensagem = "Erro ControlRegeneradorHT";
         }
     }  
 
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
+    }
+    
     public double getH12() {
         return H12;
     }

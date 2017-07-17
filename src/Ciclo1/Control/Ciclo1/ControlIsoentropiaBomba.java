@@ -15,6 +15,8 @@ public class ControlIsoentropiaBomba {
     
     private double Test, erro, DT, it, S, burbuja, erro1, xx10, T10s, H10s, H10, HL10, H, T10, S10;
     
+    private String mensagem = "";
+    
     public ControlIsoentropiaBomba(double Beff, double P10, double Pref, double Tref, double S9, double H9, double zi, double T9, Session session){
         Test=T9; 
         erro=1;
@@ -24,7 +26,8 @@ public class ControlIsoentropiaBomba {
         while(erro >= 0.0001){
             it = it+1;
             if(it > 100){
-               // hshshsh*ksksks
+               mensagem = "Erro ControlIsoentropiaBomba";
+               return;
             }
             ControlS_SistemaMix SSistemaMix = new ControlS_SistemaMix(Test, P10, Pref, Tref, zi, session);
             S = SSistemaMix.getSL();
@@ -60,7 +63,8 @@ public class ControlIsoentropiaBomba {
             while(erro1 > 0.001){
                 it = it+1;
                 if(it > 2000){
-                    //hshshsh*ksksks;
+                    mensagem = "Erro ControlIsoentropiaBomba";
+                    return;
                 }
                 HSistemamix = new ControlH_Sistemamix(Test, P10, Pref, Tref, zi, session);
                 HL10 = HSistemamix.getHL();
@@ -91,6 +95,14 @@ public class ControlIsoentropiaBomba {
         
         ControlH_Sistemamix HSistemamix = new ControlH_Sistemamix(T10, P10, Pref, Tref, zi, session);
         H10 = HSistemamix.getHL();
+    }
+
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
     }
 
     public double getH10() {

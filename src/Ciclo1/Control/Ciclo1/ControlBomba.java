@@ -5,6 +5,7 @@
  */
 package Ciclo1.Control.Ciclo1;
 
+import javax.swing.JOptionPane;
 import org.hibernate.Session;
 
 /**
@@ -14,6 +15,7 @@ import org.hibernate.Session;
 public class ControlBomba {
     
     private double T9, P9, P10, H9, S9, T10s, S10, H10s, H10, T10;
+    private String mensagem = "";
     
     public ControlBomba(double Beff, double P1, double Pcon, double Tcon, double Pref, double Tref, double zi, Session session){
         T9 = Tcon;
@@ -27,6 +29,10 @@ public class ControlBomba {
         S9 = SSistemamix.getSL();
         
         ControlIsoentropiaBomba isoBomba = new ControlIsoentropiaBomba(Beff, P10, Pref, Tref, S9, H9, zi, T9, session);
+        if(!isoBomba.getMensagem().equals("")){
+            mensagem = isoBomba.getMensagem();
+            return;
+        }
         T10s = isoBomba.getT10();
         S10 = isoBomba.getS10();
         
@@ -37,6 +43,14 @@ public class ControlBomba {
         T10 = T10s;
     }
 
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
+    }
+   
     public double getP10() {
         return P10;
     }

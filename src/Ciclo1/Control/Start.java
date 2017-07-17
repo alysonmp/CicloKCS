@@ -172,10 +172,10 @@ public class Start {
         ctrPrincipal.getViewPrincipal().getTxtteste1().setText("Ec: "+ec);
         ctrPrincipal.getViewPrincipal().getTxtteste2().setText("QLHR: "+QLHR);
         ctrPrincipal.getViewPrincipal().getTxtteste3().setText("QHHR: "+QHHR);
-        ctrPrincipal.getViewPrincipal().getTxtteste2().setText("Qcon: "+Qcon);
-        ctrPrincipal.getViewPrincipal().getTxtteste3().setText("Qsen: "+Qsen);
-        ctrPrincipal.getViewPrincipal().getTxtteste2().setText("Qlat: "+Qlat);
-        ctrPrincipal.getViewPrincipal().getTxtteste3().setText("Tfout: "+Tfout);
-        ctrPrincipal.getViewPrincipal().getTxtteste2().setText("T9: "+T9);
+        ctrPrincipal.getViewPrincipal().getTxtteste4().setText("Qcon: "+Qcon);
+        ctrPrincipal.getViewPrincipal().getTxtteste5().setText("Qsen: "+Qsen);
+        ctrPrincipal.getViewPrincipal().getTxtteste6().setText("Qlat: "+Qlat);
+        ctrPrincipal.getViewPrincipal().getTxtteste7().setText("Tfout: "+Tfout);
+        ctrPrincipal.getViewPrincipal().getTxtteste8().setText("T9: "+T9);
     }
 }

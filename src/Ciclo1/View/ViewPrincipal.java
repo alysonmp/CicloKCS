@@ -24,6 +24,7 @@ import java.awt.event.ItemListener;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -104,6 +105,8 @@ public class ViewPrincipal extends JFrame{
     private JPanel painelEntrada = new JPanel(new GridBagLayout());
     private JPanel painelSaida = new JPanel(new GridBagLayout());
     private JPanel painelDados = new JPanel(new GridBagLayout());
+    
+    private JFrame frameEspera;
     
     public ViewPrincipal(ControlPrincipal ctrPrincipal) {
         this.setLayout(new FlowLayout());
@@ -391,7 +394,41 @@ public class ViewPrincipal extends JFrame{
         btnCalcular.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                Start start = new Start(ctrPrincipal.getSession(), ctrPrincipal);
+                Thread t1 = new Thread(new Runnable() {
+                @Override
+                    public void run() {
+                        Start start = new Start(ctrPrincipal.getSession(), ctrPrincipal);
+                    }
+                });
+                t1.start();
+                
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {    
+                        try {
+                            ctrPrincipal.getViewPrincipal().setEnabled(false);
+                            ViewEspera painelEspera = new ViewEspera(ctrPrincipal);
+
+                            frameEspera = new JFrame();
+                            frameEspera.setUndecorated(true);
+                            frameEspera.add(painelEspera.getPanelEspera());
+                            frameEspera.setAlwaysOnTop(true);
+                            frameEspera.setBounds((ctrPrincipal.getViewPrincipal().getWidth()/2)-100, (ctrPrincipal.getViewPrincipal().getHeight()/2)-50, 200, 100);
+                            frameEspera.setResizable(false);
+                            frameEspera.setVisible(true);
+                            frameEspera.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                            frameEspera.revalidate();
+                            frameEspera.repaint();
+
+                            t1.join();
+                            
+                            frameEspera.dispose();
+                            ctrPrincipal.getViewPrincipal().setEnabled(true);
+                        }catch(InterruptedException ex){
+                            
+                        }
+                    }
+                }).start();
             }
         });
     }

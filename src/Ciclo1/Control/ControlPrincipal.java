@@ -76,7 +76,6 @@ import Ciclo1.Model.ModelEqro;
 import Ciclo1.Model.ModelEqrs;
 import Ciclo1.Model.ModelLinear;
 import Ciclo1.Model.ModelQfpsoKCSMat;
-import Ciclo1.Model.ModelQfpsoKCSMat;
 import Ciclo1.Model.TabelasFluidos.ModelButanoGas;
 import Ciclo1.Util.HibernateUtil;
 import Ciclo1.View.Condensador.ViewCondensadorImage;
@@ -307,45 +306,6 @@ public class ControlPrincipal {
             }
             
             tx.commit();
-        }
-        
-        cr = this.session.createCriteria(ModelQfpsoKCSMat.class);
-        results = cr.list();
-        
-        if(results.isEmpty()){
-            Transaction tx = session.beginTransaction();
-            String csvFile = "src/Csv/Qfpso.csv";
-            BufferedReader br = null;
-            String line = "";
-            String csvSplitBy = ";";
-           
-            try{
-                cr = this.session.createCriteria(ModelQfpsoKCSMat.class);
-                results = cr.list();
-                br = new BufferedReader(new FileReader(csvFile));
-                while((line = br.readLine()) != null){
-                    double[] valoresV = new double[12];
-                    String[] table_c = line.split(csvSplitBy);
-                    for(int i = 0; i < table_c.length; i++){
-                        valoresV[i] = Double.parseDouble(table_c[i]);
-                    }
-                    this.session.save(new ModelQfpsoKCSMat(valoresV));
-                }
-
-            }catch(FileNotFoundException e){
-                e.printStackTrace();
-            }catch(IOException e){
-                e.printStackTrace();
-            }finally {
-                tx.commit();
-                if (br != null) {
-                    try {
-                        br.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
         }
         
         cr = this.session.createCriteria(ModelConsExeMatA.class);

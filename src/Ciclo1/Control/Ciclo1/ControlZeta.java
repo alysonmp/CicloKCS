@@ -1,5 +1,7 @@
 package Ciclo1.Control.Ciclo1;
 
+import Ciclo1.Model.ModelComplexo;
+
 public class ControlZeta {
 
     ControlCubica cubica;
@@ -22,11 +24,15 @@ public class ControlZeta {
         cubica = new ControlCubica();
         cubica.solve(ter1, ter2, ter3, ter4);
 
-        double x1 = cubica.getX1();
-        double x2 = cubica.getX2();
-        double x3 = cubica.getX3();
+        ModelComplexo complexo1 = cubica.getComplexo1();
+        ModelComplexo complexo2 = cubica.getComplexo2();
+        ModelComplexo complexo3 = cubica.getComplexo3();
             
-        if (!Double.isNaN(x1) && !Double.isNaN(x2) && !Double.isNaN(x3)) {
+        double x1 = complexo1.getReal();
+        double x2 = complexo2.getReal();
+        double x3 = complexo3.getReal();
+        
+        if (complexo1.getImaginario() == 0 && complexo2.getImaginario() == 0 && complexo3.getImaginario() == 0) {
             if(x1 > x2 && x1 > x3){
                 Z1m = x1;
             }else if(x2 > x3){
@@ -43,21 +49,21 @@ public class ControlZeta {
                 Z2m = x3;
             }
         }else{
-            if((!Double.isNaN(x1) && Double.isNaN(x2) && Double.isNaN(x3)) || (!Double.isNaN(x1) && !Double.isNaN(x2) && Double.isNaN(x3) && x1 > x2) || (x1 > x2 && x1 > x3 && !Double.isNaN(x1))){
+            if(x1 > x2 && x1 > x3 && complexo1.getImaginario() == 0){
                 Z1m = x1;
-            }else if((!Double.isNaN(x2) && Double.isNaN(x3)) || (x2 > x3 && !Double.isNaN(x2))){
+            }else if(x2 > x3 && complexo2.getImaginario() == 0){
                 Z1m = x2;
-            }else if(!Double.isNaN(x3)){
+            }else if(complexo3.getImaginario() == 0){
                 Z1m = x3;
             }else{
                 Z1m = 0;
             }
             
-            if((!Double.isNaN(x1) && Double.isNaN(x2) && Double.isNaN(x3)) || (!Double.isNaN(x1) && !Double.isNaN(x2) && Double.isNaN(x3) && x1 < x2) || (x1 < x2 && x1 < x3 && !Double.isNaN(x1))){
+            if(x1 < x2 && x1 < x3 && complexo1.getImaginario() == 0){
                 Z2m = x1;
-            }else if((!Double.isNaN(x2) && Double.isNaN(x3)) || (x2 < x3 && !Double.isNaN(x2))){
+            }else if(x2 < x3 && complexo2.getImaginario() == 0){
                 Z2m = x2;
-            }else if(!Double.isNaN(x3)){
+            }else if(complexo3.getImaginario() == 0){
                 Z2m = x3;
             }else{
                 Z2m = 0;

@@ -140,8 +140,8 @@ public class ControlIsoentropiaTurbina {
                 HV4 = HsistemaMix.getHV();
                 
                 ControlH_Sistemamix HsistemaMix2 = new ControlH_Sistemamix(T4s, P4, Pref, Tref, xi4s, session);
-                HL4 = HsistemaMix.getHL();
-                HV = HsistemaMix.getHV();
+                HL4 = HsistemaMix2.getHL();
+                HV = HsistemaMix2.getHV();
                 
                 ControlFlash flash = new ControlFlash(P4, Test, yi, session);
                 xx4s = flash.getVF();

@@ -26,7 +26,7 @@ public class ControlInicio {
         P2=P1;
         Pf=4000/100 ;   
 
-        ControlParametros p = new ControlParametros(P1, Tf, Pf, zi, Tres, session);
+        /*ControlParametros p = new ControlParametros(P1, Tf, Pf, zi, Tres, session);
 
         TbolA = p.getTbolA();
         TbolB = p.getTbolB();
@@ -41,7 +41,7 @@ public class ControlInicio {
         Tref = p.getTref();
 
 
-        DT1 = (TorvA - TbolA);
+        DT1 = (TorvA - TbolA);*/
     }
 
     public double getP1() {

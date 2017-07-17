@@ -79,28 +79,18 @@ import Ciclo1.Model.ModelQfpsoKCSMat;
 import Ciclo1.Model.ModelQfpsoKCSMat;
 import Ciclo1.Model.TabelasFluidos.ModelButanoGas;
 import Ciclo1.Util.HibernateUtil;
-import Ciclo1.View.Condensador.ViewCondensadorImage;
-import Ciclo1.View.Evaporador.ViewEvaporadorImage;
-import Ciclo1.View.Bomba.ViewBombaImage;
-import Ciclo1.View.Bomba.ViewBombaPanelKCS;
-import Ciclo1.View.Condensador.ViewCondensadorPanelKCS;
-import Ciclo1.View.Evaporador.ViewEvaporadorPanelKCS;
-import Ciclo1.View.Recuperador.ViewRecuperadorImage;
-import Ciclo1.View.Regenerador.ViewRegeneradorImage;
-import Ciclo1.View.Regenerador.ViewRegeneradorPanelKCS;
-import Ciclo1.View.Separador.ViewSeparadorImage;
-import Ciclo1.View.ViewPrincipal;
-import Ciclo1.View.Turbina.ViewTurbinaImage;
-import Ciclo1.View.Turbina.ViewTurbinaPanelKCS;
 import Ciclo1.View.ViewCiclos;
+import Ciclo1.View.ViewPrincipal;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.hibernate.Criteria;
@@ -586,147 +576,12 @@ public class ControlPrincipal {
         }
         
         viewPrincipal = new ViewPrincipal(this);
+        viewPrincipal.setResizable(false);
+        viewPrincipal.pack();
+        viewPrincipal.setVisible(true);
+        viewPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    
-    //FUNÇÃO QUE CRIA O DESENHO DO PRIMEIRO CICLO E INDICA OS LOCAIS DOS JPANELS INSERIDOS
-    public void criaCiclo1() {
-        
-        //Start start = new Start(1, 14, 415.25, 1144.4, 25, 10, 313.15, 0.3, session);
-        
-        viewPrincipal.getPainelCiclos().removeAll();
-        viewPrincipal.getTabbedPanel().removeAll();
-        panel_usado.clear();
-        
-        ViewCiclos ciclo = new ViewCiclos(this, "src/Ciclo1/Images/ciclo1.png", (int)(this.getViewPrincipal().getFramePrincipal().getWidth()*0.3), (int)(this.getViewPrincipal().getFramePrincipal().getHeight()*0.9));
-        ciclo.setLayout(null);
-        ciclo.setBounds((int)(this.getViewPrincipal().getFramePrincipal().getWidth()*0.1), (int)(this.getViewPrincipal().getFramePrincipal().getHeight()*0.05), 
-                          (int)(this.getViewPrincipal().getFramePrincipal().getWidth()*0.3), (int)(this.getViewPrincipal().getFramePrincipal().getHeight()*0.9));
-        viewPrincipal.getPainelCiclos().add(ciclo);
-        
-        criaPanel(new ViewTurbinaImage(this, 1), 
-                 (int)(this.getViewPrincipal().getFramePrincipal().getWidth()*0.28), (int)(this.getViewPrincipal().getFramePrincipal().getHeight()*0.065), 
-                 (int)(this.getViewPrincipal().getFramePrincipal().getWidth()*0.04), (int)(this.getViewPrincipal().getFramePrincipal().getHeight()*0.13));
-        
-        criaPanel(new ViewSeparadorImage(this, 1), 
-                 (int)(this.getViewPrincipal().getFramePrincipal().getWidth()*0.21), (int)(this.getViewPrincipal().getFramePrincipal().getHeight()*0.1), 
-                 (int)(this.getViewPrincipal().getFramePrincipal().getWidth()*0.04), (int)(this.getViewPrincipal().getFramePrincipal().getHeight()*0.1));
-        
-        criaPanel(new ViewEvaporadorImage(this, 1), 
-                 (int)(this.getViewPrincipal().getFramePrincipal().getWidth()*0.13), (int)(this.getViewPrincipal().getFramePrincipal().getHeight()*0.166), 
-                 (int)(this.getViewPrincipal().getFramePrincipal().getWidth()*0.075), (int)(this.getViewPrincipal().getFramePrincipal().getHeight()*0.15));
-        
-        criaPanel(new ViewCondensadorImage(this, 1, session), 
-                 (int)(this.getViewPrincipal().getFramePrincipal().getWidth()*0.285), (int)(this.getViewPrincipal().getFramePrincipal().getHeight()*0.725), 
-                 (int)(this.getViewPrincipal().getFramePrincipal().getWidth()*0.07), (int)(this.getViewPrincipal().getFramePrincipal().getHeight()*0.15));
-        
-        criaPanel(new ViewRecuperadorImage(this, 1), 
-                 (int)(this.getViewPrincipal().getFramePrincipal().getWidth()*0.184), (int)(this.getViewPrincipal().getFramePrincipal().getHeight()*0.35), 
-                 (int)(this.getViewPrincipal().getFramePrincipal().getWidth()*0.069), (int)(this.getViewPrincipal().getFramePrincipal().getHeight()*0.15));
-        
-        criaPanel(new ViewBombaImage(this, 1), 
-                 (int)(this.getViewPrincipal().getFramePrincipal().getWidth()*0.205), (int)(this.getViewPrincipal().getFramePrincipal().getHeight()*0.875), 
-                 (int)(this.getViewPrincipal().getFramePrincipal().getWidth()*0.035), (int)(this.getViewPrincipal().getFramePrincipal().getHeight()*0.04));
-        
-        viewPrincipal.getFramePrincipal().repaint();
-        
-        Start start = new Start(session);
-    }
-    
-    //FUNÇÃO QUE EDITA OS JPANELS ONDE SERÃO MOSTRADOS OS CICLOS E OS INSERE NO PAINEL
-    public void criaPanel(JPanel obj, int x, int y, int width, int height){
-        obj.setLayout(null);
-        obj.setBackground(Color.black);
-        obj.setOpaque(false);
-        obj.setBounds(x, y, width, height);
-        viewPrincipal.getPainelCiclos().add(obj);
-    }  
-    
-    //FUNÇÃO QUE AJUSTA A MASSA DE TODOS OS COMPONENTES
-    public void ajustaMassa(String valor) {
-        Component[] components = viewPrincipal.getTabbedPanel().getComponents();
-        for(Component c: components){
-            System.out.println(c);
-            switch(c.getName()){
-                case "Evaporador":
-                    ViewEvaporadorPanelKCS painelE = (ViewEvaporadorPanelKCS)c;
-                    //painelE.getFieldMassa().setSelectedItem(valor);
-                    break;
-                
-                case "Condensador":
-                    ViewCondensadorPanelKCS painelC = (ViewCondensadorPanelKCS)c;
-                    //painelC.getFieldMassa().setSelectedItem(valor);
-                    break;
-                    
-                case "Bomba":
-                    ViewBombaPanelKCS painelB = (ViewBombaPanelKCS)c;
-                    //painelB.getFieldMassa().setSelectedItem(valor);
-                    break;
-                    
-                case "Regenerador":
-                    ViewRegeneradorPanelKCS painelR = (ViewRegeneradorPanelKCS)c;
-                    //painelR.getFieldMassa().setSelectedItem(valor);
-                    break;
-                    
-                case "Turbina":
-                    ViewTurbinaPanelKCS painelT = (ViewTurbinaPanelKCS)c;
-                    //painelT.getFieldMassa().setSelectedItem(valor);
-                    break;
-            }
-            
-            Transaction tx = this.session.beginTransaction();
-            Criteria cr = this.session.createCriteria(ModelMassa.class);
-            List result = cr.list();
-            
-            ModelMassa massa = (ModelMassa)result.get(0);
-            massa.setMassa(Double.parseDouble(valor));
-            session.saveOrUpdate(massa);
-            
-            tx.commit();
-        }
-    }
-    
-    public void removeTab(){
-        this.getViewPrincipal().getTabbedPanel().remove(0);
-        this.getPanel_usado().remove(0);
-    }
-    
-    public List getFluidos(){
-        SessionFactory sf = HibernateUtil.getSessionFactory();
-        this.session = sf.openSession();
-        
-        Criteria cr = this.session.createCriteria(ModelFluidos.class);
-        cr.setProjection(Projections.property("nome"));
-        
-        List results = cr.list();
-        
-        return results;
-    }
-    
-    public void calculaLimites() {
-        Criteria cr = this.session.createCriteria(ModelFluidos.class);
-        cr.add(Restrictions.eq("nome", viewPrincipal.getComboFluidos().getSelectedItem()));
-        
-        List results = cr.list();
-        
-        ModelFluidos fluido = (ModelFluidos) results.get(0);
-        int ii = fluido.getCod();
-        
-        cr = this.session.createCriteria(ModelCriticasKCSMat_Pc.class);
-        cr.add(Restrictions.eq("cod", ii));
-        results = cr.list();
-        
-        ModelCriticasKCSMat_Pc pc = (ModelCriticasKCSMat_Pc) results.get(0);
-        double p = pc.getValor();
-        
-        double PMax = p * 0.9;
-        
-        ControlT_Ref TRef = new ControlT_Ref(PMax, ii, session);
-        double TMax = TRef.getTref();
-        
-        JOptionPane.showMessageDialog(null, "A pressão máxima para esse fluido é "+PMax+
-                                            "\nA temperatura máxima para esse fluido é "+TMax);
-    }
-    
+ 
     public ViewPrincipal getViewPrincipal() {
         return viewPrincipal;
     }

@@ -5,6 +5,7 @@
  */
 package Ciclo1.Control.Ciclo1;
 
+import Ciclo1.Control.ControlPrincipal;
 import org.hibernate.Session;
 
 /**
@@ -15,7 +16,7 @@ public class ControlParametros {
     
     private double Tcon, TbolA, yii, TorvA, xii, Pcon, TbolB, TorvB, Beff, Pref, Tref, T1max, Teff;
     
-    public ControlParametros(double P1, double Tf, double Pf, double zi, double Tres, Session session){
+    public ControlParametros(double P1, double Tf, double Pf, double zi, double Tres, Session session, ControlPrincipal ctrPrincipal){
         Tcon = Tres+15;
         ControlPBolha pBolha = new ControlPBolha(Tcon, zi, session);
         Pcon = pBolha.getPbol();
@@ -36,11 +37,11 @@ public class ControlParametros {
         TorvB = torvalho.getTorv();
         xii = torvalho.getXi();
         
-        Beff = 0.8;
-        Pref = 5000/100;
-        Tref = 273.15;
+        Beff = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtBeff().getText());
+        Pref = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtPref().getText());
+        Tref = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtTref().getText());
         T1max = Tf-5;
-        Teff = 0.8;
+        Teff = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtTeff().getText());
     }
 
     public double getTcon() {

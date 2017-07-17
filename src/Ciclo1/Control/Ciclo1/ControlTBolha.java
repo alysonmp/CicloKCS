@@ -20,8 +20,8 @@ public class ControlTBolha {
         zj = 1-zi;
         erro = 1;
 
-        Te = new ControlT_Ref(P, 0, session).getTref();
-        DT=0.15*Te;
+        Te = new ControlT_Ref(P, zi, session).getTref();
+        DT=0.1*Te;
         
         while(erro > 0.0001){
             conequi = new ControlConequi(session);

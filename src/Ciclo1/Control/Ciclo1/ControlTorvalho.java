@@ -20,11 +20,12 @@ public class ControlTorvalho {
         
         zj = 1-zi;
         erro = 1;
-        Te = new ControlT_Ref(P, 0, session).getTref();
+        Te = new ControlT_Ref(P, zi, session).getTref();
         DT = 0.1*Te;
         
+        conequi = new ControlConequi(session);
+        
         while(erro > 0.001){
-            conequi = new ControlConequi(session);
             conequi.realizaCalculo(Te, P, zi);
             
             teste = (zi/conequi.getKi())+(zj/conequi.getKj());

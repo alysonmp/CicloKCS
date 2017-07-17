@@ -29,7 +29,7 @@ public class ControlEvaporador {
             JOptionPane.showMessageDialog(null,"Wrong number of input arguments","Error",-1);
         }
         
-        double m = calor.getQfon1()/EntEVP;
+        m = calor.getQfon1()/EntEVP;
         QTf = m*(H1-H12);
         
         ControlTSaida tsaida = new ControlTSaida(compressor, Tf, QTf, session);
@@ -41,6 +41,7 @@ public class ControlEvaporador {
         
         //if vazio
         //if(Tfout < T12+5)
+        Tfout = tsaida.getTfout();
         
         Qsen = m*(sistemamix.getHL()-H12);
         Qlat = m*(H1 -sistemamix.getHL());

@@ -68,13 +68,15 @@ public class ControlRegeneradorLT {
         DT = Math.abs((Tbol8-T7)/3);
         it = 0;
         
+        ControlH_Sistemamix HSistemamix;
+        
         while(erro1 >= 0.001){
             it = it+1;
             if(it > 300){
                 //hshshsh*ksksks
             }
             if(Test >= Torv8){
-                ControlH_Sistemamix HSistemamix = new ControlH_Sistemamix(Test, P8, Pref, Tref, zi, session);
+                HSistemamix = new ControlH_Sistemamix(Test, P8, Pref, Tref, zi, session);
                 H = HSistemamix.getHL();
                 erro1 = Math.abs((H8-H)/H8);
                 burbuja = H8-H;
@@ -93,64 +95,64 @@ public class ControlRegeneradorLT {
                         }
                         T8 = Test;
                     }
-                }else{
-                    if(Test <= Tbol8){
-                        HSistemamix = new ControlH_Sistemamix(Test, P8, Pref, Tref, zi, session);
-                        H = HSistemamix.getHL();
-                        erro1 = Math.abs((H8-H)/H8);
-                        burbuja = H8-H;
-                        if(erro1 > 0.001 && burbuja < 0){
-                            Test = Test-DT;
+                }
+            }else{
+                if(Test <= Tbol8){
+                    HSistemamix = new ControlH_Sistemamix(Test, P8, Pref, Tref, zi, session);
+                    H = HSistemamix.getHL();
+                    erro1 = Math.abs((H8-H)/H8);
+                    burbuja = H8-H;
+                    if(erro1 > 0.001 && burbuja < 0){
+                        Test = Test-DT;
+                        DT = DT/1.1;
+                        if(DT < 0.005){
+                            DT = 3;
+                        }
+                    }else{
+                        if(erro1 > 0.001 && burbuja > 0){
+                            Test = Test+DT;
                             DT = DT/1.1;
                             if(DT < 0.005){
-                                DT = 3;
-                            }
-                        }else{
-                            if(erro1 > 0.001 && burbuja > 0){
-                                Test = Test+DT;
-                                DT = DT/1.1;
-                                if(DT < 0.005){
-                                    DT = 0.00333695;
-                                }
+                                DT = 0.00333695;
                             }
                         }
-                        T8 = Test;
                     }
-                    else{
-                        ControlCompequi compequi = new ControlCompequi(P8, Test, session);
-                        xi8 = compequi.getX();
-                        yi8 = compequi.getYi();
-                        
-                        HSistemamix = new ControlH_Sistemamix(Test, P8, Pref, Tref, yi8, session);
-                        HL = HSistemamix.getHL();
-                        HV8 = HSistemamix.getHV();
-                        
-                        HSistemamix = new ControlH_Sistemamix(Test, P8, Pref, Tref, xi8, session);
-                        HL8 = HSistemamix.getHL();
-                        HV = HSistemamix.getHV();
-                        
-                        ControlFlash flash = new ControlFlash(P8, Test, zi, session);
-                        xx8 = flash.getVF();
-                        
-                        H = (HV8*xx8)+(HL8*(1-xx8));
-                        erro1 = Math.abs((H8-H)/H8);
-                        burbuja=H8-H;
-                        if(erro1 > 0.001 && burbuja < 0){
-                           Test = Test-DT;
+                    T8 = Test;
+                }
+                else{
+                    ControlCompequi compequi = new ControlCompequi(P8, Test, session);
+                    xi8 = compequi.getX();
+                    yi8 = compequi.getYi();
+
+                    HSistemamix = new ControlH_Sistemamix(Test, P8, Pref, Tref, yi8, session);
+                    HL = HSistemamix.getHL();
+                    HV8 = HSistemamix.getHV();
+
+                    HSistemamix = new ControlH_Sistemamix(Test, P8, Pref, Tref, xi8, session);
+                    HL8 = HSistemamix.getHL();
+                    HV = HSistemamix.getHV();
+
+                    ControlFlash flash = new ControlFlash(P8, Test, zi, session);
+                    xx8 = flash.getVF();
+
+                    H = (HV8*xx8)+(HL8*(1-xx8));
+                    erro1 = Math.abs((H8-H)/H8);
+                    burbuja=H8-H;
+                    if(erro1 > 0.001 && burbuja < 0){
+                       Test = Test-DT;
+                       DT = DT/1.1;
+                       if(DT < 0.005){
+                           DT = 3;
+                       }
+                    }else{
+                        if(erro1 > 0.001 && burbuja > 0){
+                           Test = Test+DT;
                            DT = DT/1.1;
                            if(DT < 0.005){
-                               DT = 3;
+                               DT = 0.00333695;
                            }
-                        }else{
-                            if(erro1 > 0.001 && burbuja > 0){
-                               Test = Test+DT;
-                               DT = DT/1.1;
-                               if(DT < 0.005){
-                                   DT = 0.00333695;
-                               }
-                            }
-                            T8 = Test;
                         }
+                        T8 = Test;
                     }
                 }
             }
@@ -161,7 +163,7 @@ public class ControlRegeneradorLT {
         }
 
         if(T11 < T10+4){
-             //jsjsjsjs*jjsjs
+            System.out.println("Erro");
         }
     }
 

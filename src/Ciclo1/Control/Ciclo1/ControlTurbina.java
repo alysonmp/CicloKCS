@@ -16,9 +16,9 @@ public class ControlTurbina {
     private double S2, T4, S4, H4, H4s, xx4, xi4, yi4, P4, RP;
     
     public ControlTurbina(double H2, double Teff, double P2, double T2, double Pcon, double Pref, double Tref, double yi, Session session){
-        ControlH_Sistemamix sistemaMix = new ControlH_Sistemamix(T2, P2, Pref, Tref, yi, session);
+        ControlS_SistemaMix sistemaMix = new ControlS_SistemaMix(T2, P2, Pref, Tref, yi, session);
         
-        S2 = sistemaMix.getHV();
+        S2 = sistemaMix.getSV();
         P4 = Pcon;
         RP = P2/P4;
         if(RP<1.5){

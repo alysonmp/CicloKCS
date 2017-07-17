@@ -1,5 +1,7 @@
 package Ciclo1.Control.Ciclo1;
 
+import Ciclo1.Model.ModelComplexo;
+
 public class ControlZetamix {
 
     ControlCubica cubica;
@@ -21,11 +23,15 @@ public class ControlZetamix {
         cubica = new ControlCubica();
         cubica.solve(ter1, ter2, ter3, ter4);
 
-        double x1 = cubica.getX1();
-        double x2 = cubica.getX2();
-        double x3 = cubica.getX3();
+        ModelComplexo complexo1 = cubica.getComplexo1();
+        ModelComplexo complexo2 = cubica.getComplexo2();
+        ModelComplexo complexo3 = cubica.getComplexo3();
             
-        if (!Double.isNaN(x1) && !Double.isNaN(x2) && !Double.isNaN(x3)) {
+        double x1 = complexo1.getReal();
+        double x2 = complexo2.getReal();
+        double x3 = complexo3.getReal();
+        
+        if (complexo1.getImaginario() == 0 && complexo2.getImaginario() == 0 && complexo3.getImaginario() == 0) {
             if(x1 > x2 && x1 > x3){
                 Z1m = x1;
             }else if(x2 > x3){
@@ -42,63 +48,57 @@ public class ControlZetamix {
                 Z2m = x3;
             }
         }else{
-            if((!Double.isNaN(x1) && Double.isNaN(x2) && Double.isNaN(x3)) || (!Double.isNaN(x1) && !Double.isNaN(x2) && Double.isNaN(x3) && x1 > x2) || (x1 > x2 && x1 > x3 && !Double.isNaN(x1))){
+            if(x1 > x2 && x1 > x3 && complexo1.getImaginario() == 0){
                 Z1m = x1;
-            }else if((!Double.isNaN(x2) && Double.isNaN(x3)) || (x2 > x3 && !Double.isNaN(x2))){
+            }else if(x2 > x3 && complexo2.getImaginario() == 0){
                 Z1m = x2;
-            }else if(!Double.isNaN(x3)){
+            }else if(complexo3.getImaginario() == 0){
                 Z1m = x3;
             }else{
-                Z1m = getMax(x1+"", x2+"", x3+"");
+                Z1m = getMax(complexo1, complexo2, complexo3);
             }
             
-            if((!Double.isNaN(x1) && Double.isNaN(x2) && Double.isNaN(x3)) || (!Double.isNaN(x1) && !Double.isNaN(x2) && Double.isNaN(x3) && x1 < x2) || (x1 < x2 && x1 < x3 && !Double.isNaN(x1))){
+            if(x1 < x2 && x1 < x3 && complexo1.getImaginario() == 0){
                 Z2m = x1;
-            }else if((!Double.isNaN(x2) && Double.isNaN(x3)) || (x2 < x3 && !Double.isNaN(x2))){
+            }else if(x2 < x3 && complexo2.getImaginario() == 0){
                 Z2m = x2;
-            }else if(!Double.isNaN(x3)){
+            }else if(complexo3.getImaginario() == 0){
                 Z2m = x3;
             }else{
-                Z2m = getMin(x1+"", x2+"", x3+"");
+                Z2m = getMin(complexo1, complexo2, complexo3);
             }
         }
         Zl = Z2m;
         Zv = Z1m;
     }
     
-    public double getMax(String x1, String x2, String x3){
-        String[] x1_ = x1.split(" ");
-        String[] x2_ = x2.split(" ");
-        String[] x3_ = x3.split(" ");
+    public double getMax(ModelComplexo comp1, ModelComplexo comp2, ModelComplexo comp3){
         
-        double x1d = Double.parseDouble(x1_[0]);
-        double x2d = Double.parseDouble(x2_[0]);
-        double x3d = Double.parseDouble(x3_[0]);
+        double x1 = comp1.getReal();
+        double x2 = comp2.getReal();
+        double x3 = comp3.getReal();
         
-        if(x1d > x2d && x1d > x3d){
-            return x1d;
-        }else if(x2d > x3d){
-            return x2d;
+        if(x1 > x2 && x1 > x3){
+            return comp1.abs(comp1);
+        }else if(x2 > x3){
+            return comp2.abs(comp2);
         }else{
-            return x3d;
+            return comp3.abs(comp3);
         }
     }
     
-    public double getMin(String x1, String x2, String x3){
-        String[] x1_ = x1.split(" ");
-        String[] x2_ = x2.split(" ");
-        String[] x3_ = x3.split(" ");
+    public double getMin(ModelComplexo comp1, ModelComplexo comp2, ModelComplexo comp3){
         
-        double x1d = Double.parseDouble(x1_[0]);
-        double x2d = Double.parseDouble(x2_[0]);
-        double x3d = Double.parseDouble(x3_[0]);
+        double x1 = comp1.getReal();
+        double x2 = comp2.getReal();
+        double x3 = comp3.getReal();
         
-        if(x1d < x2d && x1d < x3d){
-            return x1d;
-        }else if(x2d < x3d){
-            return x2d;
+        if(x1 < x2 && x1 < x3){
+            return comp1.abs(comp1);
+        }else if(x2 < x3){
+            return comp2.abs(comp2);
         }else{
-            return x3d;
+            return comp3.abs(comp3);
         }
     }
     

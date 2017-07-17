@@ -23,6 +23,8 @@ public class ControlSeparador {
         T3 = T1;
         
         ControlCompequi compequi = new ControlCompequi(P1, T1, session);
+        x = compequi.getX();
+        yi = compequi.getYi();
         
         ControlH_Sistemamix h_sistemamix = new ControlH_Sistemamix(T3, P1, Pref, Tref, compequi.getX(), session);
         H3 = h_sistemamix.getHL();

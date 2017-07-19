@@ -538,6 +538,7 @@ public class ControlPrincipal {
         viewPrincipal = new ViewPrincipal(this);
         viewPrincipal.setResizable(false);
         viewPrincipal.pack();
+        viewPrincipal.setTitle("KCS");
         viewPrincipal.setVisible(true);
         viewPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

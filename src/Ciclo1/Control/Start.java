@@ -39,7 +39,7 @@ public class Start {
         SUBT = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtSUBT().getText());
         Tf = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtTf().getText());
         Tres = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtTres().getText());
-        compressor = Integer.parseInt(ctrPrincipal.getViewPrincipal().getTxtCompressor().getText());
+        compressor = ctrPrincipal.getViewPrincipal().getComp();
         effLT = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxteffLt().getText());
         zi = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtzi().getText());
         VE = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtVE().getText());
@@ -54,6 +54,7 @@ public class Start {
 
         if(Tf-5<T1){
             JOptionPane.showMessageDialog(null,"Erro start","Error",0);
+            return;
         }
 
         double Beff = parametros.getBeff();

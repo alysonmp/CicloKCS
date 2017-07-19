@@ -79,7 +79,6 @@ public class ViewPrincipal extends JFrame{
     private JTextField txtSUBT = new JTextField("0");
     private JTextField txtTf = new JTextField("415.15");
     private JTextField txtTres = new JTextField("298.15");
-    private JTextField txtCompressor = new JTextField("1");
     private JTextField txteffLt = new JTextField("0.1");
     private JTextField txtzi = new JTextField("0.8");
     private JTextField txtVE = new JTextField("0.5");
@@ -98,6 +97,9 @@ public class ViewPrincipal extends JFrame{
     private JTextField txtteste7 = new JTextField();
     private JTextField txtteste8 = new JTextField();
     
+    private String[] fluidos = {"Água", "Ar", "Compressor 1", "Compressor 2", "Compressor 3", "Compressor 4", "Compressor 5", "Gases"};
+    private JComboBox cmbCompressor = new JComboBox(fluidos);
+    
     //BUTTON
     private JButton btnCalcular = new JButton("Calcular");
             
@@ -108,9 +110,11 @@ public class ViewPrincipal extends JFrame{
     
     private JFrame frameEspera;
     
+    private int comp = 1;
+    
     public ViewPrincipal(ControlPrincipal ctrPrincipal) {
         this.setLayout(new FlowLayout());
-                
+        
         painelEntrada.setBorder(BorderFactory.createTitledBorder(BorderFactory.createBevelBorder(1, Color.lightGray, Color.lightGray), "Entrada", 1, 2, new Font("Times New Roman", 1, 12), Color.darkGray));
         painelSaida.setBorder(BorderFactory.createTitledBorder(BorderFactory.createBevelBorder(1, Color.lightGray, Color.lightGray), "Saída", 1, 2, new Font("Times New Roman", 1, 12), Color.darkGray));
 
@@ -121,13 +125,13 @@ public class ViewPrincipal extends JFrame{
         g.gridy = 0;
         g.gridwidth = 1;
         g.fill = GridBagConstraints.HORIZONTAL;
-        painelEntrada.add(lblP1,g);
+        painelEntrada.add(lblcompressor,g);
         
         g.gridx = 1;
         g.gridy = 0;
         g.gridwidth = 2;
         g.fill = GridBagConstraints.HORIZONTAL;
-        painelEntrada.add(txtP1,g);
+        painelEntrada.add(cmbCompressor,g);
         
         g.gridx = 0;
         g.gridy = 1;
@@ -181,13 +185,13 @@ public class ViewPrincipal extends JFrame{
         g.gridy = 5;
         g.gridwidth = 1;
         g.fill = GridBagConstraints.HORIZONTAL;
-        painelEntrada.add(lblcompressor,g);
+        painelEntrada.add(lblP1,g);
 
         g.gridx = 1;
         g.gridy = 5;
         g.gridwidth = 2;
         g.fill = GridBagConstraints.HORIZONTAL;
-        painelEntrada.add(txtCompressor,g);
+        painelEntrada.add(txtP1,g);
 
         g.gridx = 0;
         g.gridy = 6;
@@ -391,6 +395,48 @@ public class ViewPrincipal extends JFrame{
      
         this.add(painelDados);
         
+        cmbCompressor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                int FON = cmbCompressor.getSelectedIndex();
+                switch(FON){
+                    case 3:
+                        comp = 2;
+                        //m = 55.54;
+                        txtTf.setText(415.15+"");
+                        //Pf = 1144.4;
+                        break;
+                    case 4:
+                        comp = 3;
+                        //m = 55.54;
+                        txtTf.setText(417.15+"");
+                        //Pf = 3133.8;
+                        break;
+                    case 5: 
+                        comp = 4;
+                        //m = 55.54;
+                        txtTf.setText(418.15+"");
+                        //Pf = 8825.6;
+                        break;
+                    case 6:
+                        comp = 5;
+                        //m = 55.54;
+                        txtTf.setText(408.15+"");
+                        //Pf = 25109;
+                        break;
+                    case 7: 
+                        comp = 6;
+                        //m = 61.78;
+                        txtTf.setText(431.15+"");
+                        //Pf = 8196.1;
+                        break;
+                    default:
+                        comp = 1;
+                        break;
+                }
+            }
+        });
+        
         btnCalcular.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -499,10 +545,6 @@ public class ViewPrincipal extends JFrame{
 
     public JTextField getTxtTres() {
         return txtTres;
-    }
-
-    public JTextField getTxtCompressor() {
-        return txtCompressor;
     }
 
     public JTextField getTxteffLt() {
@@ -684,6 +726,13 @@ public class ViewPrincipal extends JFrame{
     public void setTxtteste8(JTextField txtteste8) {
         this.txtteste8 = txtteste8;
     }
-    
+
+    public int getComp() {
+        return comp;
+    }
+
+    public void setComp(int comp) {
+        this.comp = comp;
+    }
     
 }

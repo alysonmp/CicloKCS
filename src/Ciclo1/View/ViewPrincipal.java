@@ -110,7 +110,7 @@ public class ViewPrincipal extends JFrame{
     
     private JFrame frameEspera;
     
-    private int comp = 1;
+    private int comp = 0;
     
     public ViewPrincipal(ControlPrincipal ctrPrincipal) {
         this.setLayout(new FlowLayout());
@@ -401,37 +401,37 @@ public class ViewPrincipal extends JFrame{
                 int FON = cmbCompressor.getSelectedIndex();
                 switch(FON){
                     case 3:
-                        comp = 2;
+                        comp = 1;
                         //m = 55.54;
                         txtTf.setText(415.15+"");
                         //Pf = 1144.4;
                         break;
                     case 4:
-                        comp = 3;
+                        comp = 2;
                         //m = 55.54;
                         txtTf.setText(417.15+"");
                         //Pf = 3133.8;
                         break;
                     case 5: 
-                        comp = 4;
+                        comp = 3;
                         //m = 55.54;
                         txtTf.setText(418.15+"");
                         //Pf = 8825.6;
                         break;
                     case 6:
-                        comp = 5;
+                        comp = 4;
                         //m = 55.54;
                         txtTf.setText(408.15+"");
                         //Pf = 25109;
                         break;
                     case 7: 
-                        comp = 6;
+                        comp = 5;
                         //m = 61.78;
                         txtTf.setText(431.15+"");
                         //Pf = 8196.1;
                         break;
                     default:
-                        comp = 1;
+                        comp = 0;
                         break;
                 }
             }

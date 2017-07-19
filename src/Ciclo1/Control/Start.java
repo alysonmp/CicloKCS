@@ -54,6 +54,7 @@ public class Start {
 
         if(Tf-5<T1){
             JOptionPane.showMessageDialog(null,"Erro start","Error",0);
+            return;
         }
 
         double Beff = parametros.getBeff();

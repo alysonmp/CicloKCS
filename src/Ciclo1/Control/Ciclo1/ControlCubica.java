@@ -167,7 +167,7 @@ public class ControlCubica {
             else 
                     k=1;
 
-            m2 = (Math.pow((R*k),(0.333333333)));
+            m2 = (Math.pow((R*k),(0.33333333333333333333333333333333333333333333333333333333)));
             m2 = m2*k;
             k=1;
             n = (-(g/2)- (Math.sqrt(h)));
@@ -176,7 +176,7 @@ public class ControlCubica {
             else 
                     k=1;
 
-            n2 = (Math.pow((n*k),(0.3333333333)));
+            n2 = (Math.pow((n*k),(0.33333333333333333333333333333333333333333333333333333333)));
             n2 = n2*k;
             k=1;
             x1= ((m2 + n2) - (b/(3*a)));
@@ -198,7 +198,7 @@ public class ControlCubica {
             if (r<0) 
                 k=-1;
 
-            rc = Math.pow((r*k),(0.333333333))*k;
+            rc = Math.pow((r*k),(0.33333333333333333333333333333333333333333333333333333333))*k;
             k=1;
             theta =Math.acos((-g/(2*r)));
             x1= (2*(rc*Math.cos(theta/3))-(b/(3*a)));
@@ -209,9 +209,17 @@ public class ControlCubica {
             x2=(x2a*(x2b + x2c))-(b/(3*a));
             x3=(x2a*(x2b - x2c))-(b/(3*a));
 
-            x1=x1*1E+14;x1=Math.round(x1);x1=(x1/1E+14);
-            x2=x2*1E+14;x2=Math.round(x2);x2=(x2/1E+14);
-            x3=x3*1E+14;x3=Math.round(x3);x3=(x3/1E+14);
+            x1=x1*1E+14;
+            //x1=Math.round(x1);
+            x1=(x1/1E+14);
+            
+            x2=x2*1E+14;
+            //x2=Math.round(x2);
+            x2=(x2/1E+14);
+            
+            x3=x3*1E+14;
+            //x3=Math.round(x3);
+            x3=(x3/1E+14);
             
             complexo1 = new ModelComplexo(x1, 0);
             complexo2 = new ModelComplexo(x2, 0);
@@ -226,11 +234,11 @@ public class ControlCubica {
             }
 
             if (sign>0){
-                dans=Math.pow((d/a),(0.333333333));
+                dans=Math.pow((d/a),(0.33333333333333333333333333333333333333333333333333333333));
                 dans=dans*-1;
             }else{
                 d=d*-1;
-                dans=Math.pow((d/a),(0.3333333333));
+                dans=Math.pow((d/a),(0.33333333333333333333333333333333333333333333333333333333));
             }
             x1=dans; 
             x2=dans;
@@ -242,8 +250,8 @@ public class ControlCubica {
         }
     }
     
-    public static void main(String args[]){
+    /*public static void main(String args[]){
         ControlCubica cubica = new ControlCubica();
         cubica.solve(1, -0.957976461645635, 0.066313472457258, -0.001464168078973);  
-    }
+    }*/
 }

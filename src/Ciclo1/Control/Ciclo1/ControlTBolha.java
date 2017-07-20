@@ -21,7 +21,7 @@ public class ControlTBolha {
         erro = 1;
 
         Te = new ControlT_Ref(P, zi, session).getTref();
-        DT=0.1*Te;
+        DT=0.15*Te;
         
         while(erro > 0.0001){
             conequi = new ControlConequi(session);

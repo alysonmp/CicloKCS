@@ -52,6 +52,8 @@ public class ViewPrincipal extends JFrame{
     private JLabel lblPP = new JLabel("PP: ");
     private JLabel lblSUBT = new JLabel("SUBT: ");
     private JLabel lblTf = new JLabel("Tf: ");
+    private JLabel lblPf = new JLabel("Pf: ");
+    private JLabel lblMf = new JLabel("Mf: ");
     private JLabel lblTres = new JLabel("Tres: ");
     private JLabel lblcompressor = new JLabel("Compressor: ");
     private JLabel lbleffLT = new JLabel("effLt: ");
@@ -78,6 +80,8 @@ public class ViewPrincipal extends JFrame{
     private JTextField txtPP = new JTextField("2");
     private JTextField txtSUBT = new JTextField("0");
     private JTextField txtTf = new JTextField("415.15");
+    private JTextField txtPf = new JTextField("415.15");
+    private JTextField txtMf = new JTextField("415.15");
     private JTextField txtTres = new JTextField("298.15");
     private JTextField txteffLt = new JTextField("0.1");
     private JTextField txtzi = new JTextField("0.8");
@@ -398,37 +402,37 @@ public class ViewPrincipal extends JFrame{
         cmbCompressor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                int FON = cmbCompressor.getSelectedIndex();
+                int FON = cmbCompressor.getSelectedIndex()+1;
                 switch(FON){
                     case 3:
                         comp = 1;
-                        //m = 55.54;
+                        txtMf.setText(55.54+"");
                         txtTf.setText(415.15+"");
-                        //Pf = 1144.4;
+                        txtPf.setText(1144.4+"");
                         break;
                     case 4:
                         comp = 2;
-                        //m = 55.54;
+                        txtMf.setText(55.54+"");
                         txtTf.setText(417.15+"");
-                        //Pf = 3133.8;
+                        txtPf.setText(3133.8+"");
                         break;
                     case 5: 
                         comp = 3;
-                        //m = 55.54;
+                        txtMf.setText(55.54+"");
                         txtTf.setText(418.15+"");
-                        //Pf = 8825.6;
+                        txtPf.setText(8825.6+"");
                         break;
                     case 6:
                         comp = 4;
-                        //m = 55.54;
+                        txtMf.setText(55.54+"");
                         txtTf.setText(408.15+"");
-                        //Pf = 25109;
+                        txtPf.setText(25109+"");
                         break;
                     case 7: 
                         comp = 5;
-                        //m = 61.78;
+                        txtMf.setText(61.78+"");
                         txtTf.setText(431.15+"");
-                        //Pf = 8196.1;
+                        txtPf.setText(8196.1+"");
                         break;
                     default:
                         comp = 0;
@@ -733,6 +737,22 @@ public class ViewPrincipal extends JFrame{
 
     public void setComp(int comp) {
         this.comp = comp;
+    }
+
+    public JTextField getTxtPf() {
+        return txtPf;
+    }
+
+    public void setTxtPf(JTextField txtPf) {
+        this.txtPf = txtPf;
+    }
+
+    public JTextField getTxtMf() {
+        return txtMf;
+    }
+
+    public void setTxtMf(JTextField txtMf) {
+        this.txtMf = txtMf;
     }
     
 }

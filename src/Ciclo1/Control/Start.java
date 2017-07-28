@@ -26,7 +26,7 @@ import org.hibernate.Session;
  */
 public class Start {
     
-    double P1, PP, SUBT, Tf, Tres, effLT, zi, VE, P2, Pf, DT1, T1, ec;
+    double P1, PP, SUBT, Tf, Tres, effLT, zi, VE, P2, Pf, DT1, T1, ec, Mf;
     Session session;
     
     int compressor;
@@ -38,6 +38,8 @@ public class Start {
         PP = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtPP().getText());
         SUBT = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtSUBT().getText());
         Tf = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtTf().getText());
+        Pf = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtPf().getText());
+        Mf = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtMf().getText());
         Tres = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtTres().getText());
         compressor = ctrPrincipal.getViewPrincipal().getComp();
         effLT = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxteffLt().getText());

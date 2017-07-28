@@ -34,6 +34,7 @@ public class Start {
     public Start(Session session,ControlPrincipal ctrPrincipal){
         this.session = session;
         
+        T1 = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtT1().getText());
         P1 = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtP1().getText());
         PP = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtPP().getText());
         SUBT = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtSUBT().getText());
@@ -155,6 +156,7 @@ public class Start {
         //ControlBalanco balanco = new ControlBalanco(VF1, m, H2, 24279, H7, 17960, H9, H10, H12, 1459);
         ControlBalanco balanco = new ControlBalanco(VF1, m, H2, H4, H7, H8, H9, H10, H12, H11);
         
+        //TODAS SAIDA
         double QLHR = balanco.getQLHR();
         double QHHR = balanco.getQHHR();
         double Qcon = balanco.getQcon();
@@ -162,23 +164,44 @@ public class Start {
         double Qlat = evaporador.getQlat();
         double Tfout = evaporador.getTfout();
         double T9 = condensador.getT9();
+        double Wt = balanco.getWt();
+        double Wn = balanco.getWn();
+        double Wb = balanco.getWb();
         
         //ControlAreas areas = new ControlAreas(QLHR, QHHR, Qcon, Qsen, Qlat, PP, Tf, Tfout, 378.3645, T12, 333.6505, T9, 350.6612, 317.4796, 354.7027, T10, 378.3645, 353.5914);
         ControlAreas areas = new ControlAreas(QLHR, QHHR, Qcon, Qsen, Qlat, PP, Tf, Tfout, T1, T12, TbolA, T9, T8, T11, T7, T10, T3, T5);
-        
-        double Wn = balanco.getWn();
+        //TODAS SAIDA
         double QTf = evaporador.getQTf();
+        double Acon = areas.getAcon();
+        double Aevp = areas.getAevp();
+        double ALHR = areas.getALHR();
+        double AHHR = areas.getAHHR();
+        double AT = areas.getAT();
         
-        ec=Wn/QTf;
+        //SAIDA PORCENTAGEM
+        ec=(Wn/QTf)*100;
         
         
-        ctrPrincipal.getViewPrincipal().getTxtteste1().setText("Ec: "+ec);
-        ctrPrincipal.getViewPrincipal().getTxtteste2().setText("QLHR: "+QLHR);
-        ctrPrincipal.getViewPrincipal().getTxtteste3().setText("QHHR: "+QHHR);
-        ctrPrincipal.getViewPrincipal().getTxtteste4().setText("Qcon: "+Qcon);
-        ctrPrincipal.getViewPrincipal().getTxtteste5().setText("Qsen: "+Qsen);
-        ctrPrincipal.getViewPrincipal().getTxtteste6().setText("Qlat: "+Qlat);
-        ctrPrincipal.getViewPrincipal().getTxtteste7().setText("Tfout: "+Tfout);
-        ctrPrincipal.getViewPrincipal().getTxtteste8().setText("T9: "+T9);
+        ctrPrincipal.getViewPrincipal().getTxtEc().setText(round(ec,3)+"%");
+        ctrPrincipal.getViewPrincipal().getTxtQcon().setText(round(Qcon,3)+"");
+        ctrPrincipal.getViewPrincipal().getTxtQLHR().setText(round(QLHR,3)+"");
+        ctrPrincipal.getViewPrincipal().getTxtQHHR().setText(round(QHHR,3)+"");
+        ctrPrincipal.getViewPrincipal().getTxtWt().setText(round(Wt,3)+"");
+        ctrPrincipal.getViewPrincipal().getTxtWn().setText(round(Wn,3)+"");
+        ctrPrincipal.getViewPrincipal().getTxtWb().setText(round(Wb,3)+"");
+        ctrPrincipal.getViewPrincipal().getTxtAcon().setText(round(Acon,3)+"");
+        ctrPrincipal.getViewPrincipal().getTxtAevp().setText(round(Aevp,3)+"");
+        ctrPrincipal.getViewPrincipal().getTxtALHR().setText(round(ALHR,3)+"");
+        ctrPrincipal.getViewPrincipal().getTxtAHHR().setText(round(AHHR,3)+"");
+        ctrPrincipal.getViewPrincipal().getTxtAT().setText(round(AT,3)+"");
+    }
+    
+    public double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 }

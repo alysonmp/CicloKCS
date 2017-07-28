@@ -37,11 +37,11 @@ public class ControlParametros {
         TorvB = torvalho.getTorv();
         xii = torvalho.getXi();
         
-        Beff = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtBeff().getText());
-        Pref = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtPref().getText());
-        Tref = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtTref().getText());
-        T1max = Tf-5;
-        Teff = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtTeff().getText());
+        Beff=0.8;
+        Pref=5000/100;
+        Tref=273.15;
+        T1max=Tf-5;
+        Teff=0.8;
     }
 
     public double getTcon() {

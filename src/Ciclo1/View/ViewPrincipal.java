@@ -6,39 +6,24 @@
 package Ciclo1.View;
 
 import Ciclo1.Control.ControlPrincipal;
+import Ciclo1.Control.Conversao.ControlConverte;
 import Ciclo1.Control.Start;
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.ComponentOrientation;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Vector;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -103,8 +88,16 @@ public class ViewPrincipal extends JFrame{
     private JLabel txtAHHR = new JLabel("0");
     private JLabel txtAT = new JLabel("0");
     
+    //COMBOBOX
+    private String[] pressoes = {"kPa", "atm", "bar"};
+    private String[] temps = {"K", "°C", "°F"};
     private String[] fluidos = {"Água", "Ar", "Compressor 1", "Compressor 2", "Compressor 3", "Compressor 4", "Compressor 5", "Gases"};
+    
     private JComboBox cmbCompressor = new JComboBox(fluidos);
+    private JComboBox<String> comboT1 = new JComboBox<>(temps);
+    private JComboBox<String> comboP1 = new JComboBox<>(pressoes);
+    private JComboBox<String> comboTf = new JComboBox<>(temps);
+    private JComboBox<String> comboPf = new JComboBox<>(pressoes);
     
     //BUTTON
     private JButton btnCalcular = new JButton("Calcular");
@@ -118,7 +111,11 @@ public class ViewPrincipal extends JFrame{
     
     private int comp = 0;
     
+    private ControlConverte controlConverte;
+    
     public ViewPrincipal(ControlPrincipal ctrPrincipal) {
+        controlConverte = new ControlConverte();
+        
         this.setLayout(new FlowLayout());
         
         painelEntrada.setBorder(BorderFactory.createTitledBorder(BorderFactory.createBevelBorder(1, Color.lightGray, Color.lightGray), "Entrada", 1, 2, new Font("Times New Roman", 1, 12), Color.darkGray));
@@ -130,6 +127,7 @@ public class ViewPrincipal extends JFrame{
         g.gridx = 0;
         g.gridy = 0;
         g.gridwidth = 1;
+        //g.insets = new Insets(4, 0, 0, 0);
         g.fill = GridBagConstraints.HORIZONTAL;
         painelEntrada.add(lblcompressor,g);
         
@@ -151,6 +149,12 @@ public class ViewPrincipal extends JFrame{
         g.fill = GridBagConstraints.HORIZONTAL;
         painelEntrada.add(txtT1,g);
         
+        g.gridx = 3;
+        g.gridy = 1;
+        g.gridwidth = 2;
+        g.fill = GridBagConstraints.HORIZONTAL;
+        painelEntrada.add(comboT1,g);
+        
         g.gridx = 0;
         g.gridy = 2;
         g.gridwidth = 1;
@@ -162,6 +166,12 @@ public class ViewPrincipal extends JFrame{
         g.gridwidth = 2;
         g.fill = GridBagConstraints.HORIZONTAL;
         painelEntrada.add(txtP1,g);
+        
+        g.gridx = 3;
+        g.gridy = 2;
+        g.gridwidth = 2;
+        g.fill = GridBagConstraints.HORIZONTAL;
+        painelEntrada.add(comboP1,g);
         
         g.gridx = 0;
         g.gridy = 3;
@@ -199,6 +209,12 @@ public class ViewPrincipal extends JFrame{
         g.fill = GridBagConstraints.HORIZONTAL;
         painelEntrada.add(txtTf,g);
         
+        g.gridx = 3;
+        g.gridy = 5;
+        g.gridwidth = 2;
+        g.fill = GridBagConstraints.HORIZONTAL;
+        painelEntrada.add(comboTf,g);
+        
         g.gridx = 0;
         g.gridy = 6;
         g.gridwidth = 1;
@@ -210,6 +226,12 @@ public class ViewPrincipal extends JFrame{
         g.gridwidth = 2;
         g.fill = GridBagConstraints.HORIZONTAL;
         painelEntrada.add(txtPf,g);
+        
+        g.gridx = 3;
+        g.gridy = 6;
+        g.gridwidth = 2;
+        g.fill = GridBagConstraints.HORIZONTAL;
+        painelEntrada.add(comboPf,g);
         
         g.gridx = 0;
         g.gridy = 7;
@@ -519,6 +541,86 @@ public class ViewPrincipal extends JFrame{
                         }
                     }
                 }).start();
+            }
+        });
+        
+        comboT1.addItemListener(new ItemListener() {
+            
+            String[] tipo = new String[2];
+            int tip = 0;
+            
+            @Override
+            public void itemStateChanged(ItemEvent ie) {
+                
+                tipo[tip] = ie.getItem().toString();
+                tip++;
+                if(tip == 2){
+                    String valor = txtT1.getText();
+                    if(!valor.isEmpty()){
+                        txtT1.setText(String.valueOf(controlConverte.converte(tipo[0],tipo[1],Double.parseDouble(valor))));
+                    } 
+                    tip = 0;
+                }
+            }
+        });
+        
+        comboP1.addItemListener(new ItemListener() {
+            
+            String[] tipo = new String[2];
+            int tip = 0;
+            
+            @Override
+            public void itemStateChanged(ItemEvent ie) {
+                
+                tipo[tip] = ie.getItem().toString();
+                tip++;
+                if(tip == 2){
+                    String valor = txtP1.getText();
+                    if(!valor.isEmpty()){
+                        txtP1.setText(String.valueOf(controlConverte.converte(tipo[0],tipo[1],Double.parseDouble(valor))));
+                    } 
+                    tip = 0;
+                }
+            }
+        });
+        
+        comboTf.addItemListener(new ItemListener() {
+            
+            String[] tipo = new String[2];
+            int tip = 0;
+            
+            @Override
+            public void itemStateChanged(ItemEvent ie) {
+                
+                tipo[tip] = ie.getItem().toString();
+                tip++;
+                if(tip == 2){
+                    String valor = txtTf.getText();
+                    if(!valor.isEmpty()){
+                        txtTf.setText(String.valueOf(controlConverte.converte(tipo[0],tipo[1],Double.parseDouble(valor))));
+                    } 
+                    tip = 0;
+                }
+            }
+        });
+        
+        comboPf.addItemListener(new ItemListener() {
+            
+            String[] tipo = new String[2];
+            int tip = 0;
+            
+            @Override
+            public void itemStateChanged(ItemEvent ie) {
+                
+                tipo[tip] = ie.getItem().toString();
+                tip++;
+                if(tip == 2){
+                    String valor = txtPf.getText();
+                    if(!valor.isEmpty()){
+                        txtPf.setText(String.valueOf(controlConverte.converte(tipo[0],tipo[1],Double.parseDouble(valor))));
+                    } 
+                    tip = 0;
+                }
             }
         });
     }

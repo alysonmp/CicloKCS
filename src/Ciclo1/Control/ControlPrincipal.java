@@ -5,7 +5,6 @@
  */
 package Ciclo1.Control;
 
-import Ciclo1.Control.Ciclo1.ControlT_Ref;
 import Ciclo1.Control.TabelaFluidos.ControlButanoGas;
 import Ciclo1.Control.TabelaFluidos.ControlButanoLiquido;
 import Ciclo1.Control.TabelaFluidos.ControlD4Gas;
@@ -59,7 +58,6 @@ import Ciclo1.Control.TabelaFluidos.ControlTolueneLiquido;
 import Ciclo1.Control.TabelaFluidos.ControlWaterGas;
 import Ciclo1.Control.TabelaFluidos.ControlWaterLiquido;
 import Ciclo1.Model.Ciclo1.ModelFluidos;
-import Ciclo1.Model.Ciclo1.ModelMassa;
 import Ciclo1.Model.ModelCVA;
 import Ciclo1.Model.ModelCVB;
 import Ciclo1.Model.ModelConsExeMatA;
@@ -78,26 +76,17 @@ import Ciclo1.Model.ModelLinear;
 import Ciclo1.Model.ModelQfpsoKCSMat;
 import Ciclo1.Model.TabelasFluidos.ModelButanoGas;
 import Ciclo1.Util.HibernateUtil;
-import Ciclo1.View.ViewCiclos;
 import Ciclo1.View.ViewPrincipal;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -105,7 +94,6 @@ import org.hibernate.criterion.Restrictions;
  */
 public class ControlPrincipal {
     private ViewPrincipal viewPrincipal;
-    private ArrayList<JPanel> panel_usado = new ArrayList();
     Session session;
     
     @SuppressWarnings("empty-statement")
@@ -549,14 +537,6 @@ public class ControlPrincipal {
 
     public void setViewPrincipal(ViewPrincipal viewPrincipal) {
         this.viewPrincipal = viewPrincipal;
-    }
-
-    public ArrayList<JPanel> getPanel_usado() {
-        return panel_usado;
-    }
-
-    public void setPanel_usado(ArrayList<JPanel> panel_usado) {
-        this.panel_usado = panel_usado;
     }
 
     public Session getSession() {

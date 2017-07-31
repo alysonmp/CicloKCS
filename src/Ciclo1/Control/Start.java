@@ -26,33 +26,30 @@ import org.hibernate.Session;
  */
 public class Start {
     
-    double P1, PP, SUBT, Tf, Tres, effLT, zi, VE, P2, Pf, DT1, T1, ec, Mf;
     Session session;
-    
-    int compressor;
     
     public Start(Session session,ControlPrincipal ctrPrincipal){
         this.session = session;
         
-        T1 = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtT1().getText());
-        P1 = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtP1().getText());
-        PP = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtPP().getText());
-        SUBT = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtSUBT().getText());
-        Tf = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtTf().getText());
-        Pf = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtPf().getText());
-        Mf = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtMf().getText());
-        Tres = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtTres().getText());
-        compressor = ctrPrincipal.getViewPrincipal().getComp();
-        effLT = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxteffLt().getText());
-        zi = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtzi().getText());
-        VE = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtVE().getText());
+        double T1 = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtT1().getText());
+        double P1 = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtP1().getText());
+        double PP = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtPP().getText());
+        double SUBT = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtSUBT().getText());
+        double Tf = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtTf().getText());
+        double Pf = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtPf().getText());
+        double Mf = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtMf().getText());
+        double Tres = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtTres().getText());
+        int compressor = ctrPrincipal.getViewPrincipal().getComp();
+        double effLT = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxteffLt().getText());
+        double zi = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtzi().getText());
+        double VE = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtVE().getText());
         
-        P2 = P1;
+        double P2 = P1;
         Pf = 4000/100; //%bar
 
         ControlParametros parametros = new ControlParametros(P1, Tf, Pf, zi, Tres, this.session, ctrPrincipal);
         
-        DT1=(parametros.getTorvA()-parametros.getTbolA())-1;
+        double DT1=(parametros.getTorvA()-parametros.getTbolA())-1;
         T1=parametros.getTbolA()+(DT1*VE);
 
         if(Tf-5<T1){
@@ -155,8 +152,6 @@ public class Start {
         
         //ControlBalanco balanco = new ControlBalanco(VF1, m, H2, 24279, H7, 17960, H9, H10, H12, 1459);
         ControlBalanco balanco = new ControlBalanco(VF1, m, H2, H4, H7, H8, H9, H10, H12, H11);
-        
-        //TODAS SAIDA
         double QLHR = balanco.getQLHR();
         double QHHR = balanco.getQHHR();
         double Qcon = balanco.getQcon();
@@ -170,7 +165,6 @@ public class Start {
         
         //ControlAreas areas = new ControlAreas(QLHR, QHHR, Qcon, Qsen, Qlat, PP, Tf, Tfout, 378.3645, T12, 333.6505, T9, 350.6612, 317.4796, 354.7027, T10, 378.3645, 353.5914);
         ControlAreas areas = new ControlAreas(QLHR, QHHR, Qcon, Qsen, Qlat, PP, Tf, Tfout, T1, T12, TbolA, T9, T8, T11, T7, T10, T3, T5);
-        //TODAS SAIDA
         double QTf = evaporador.getQTf();
         double Acon = areas.getAcon();
         double Aevp = areas.getAevp();
@@ -178,8 +172,7 @@ public class Start {
         double AHHR = areas.getAHHR();
         double AT = areas.getAT();
         
-        //SAIDA PORCENTAGEM
-        ec=(Wn/QTf)*100;
+        double ec=(Wn/QTf)*100;
         
         
         ctrPrincipal.getViewPrincipal().getTxtEc().setText(round(ec,3)+"%");

@@ -20,7 +20,7 @@ public class ControlCalor {
     
     public ControlCalor(int compressor, double Tf, double Tf2, Session session) {
         double T = Tf - Tf2;
-        
+        compressor--;
         Criteria cr = session.createCriteria(ModelQfpsoKCSMat.class); 
         List results = cr.list();
         

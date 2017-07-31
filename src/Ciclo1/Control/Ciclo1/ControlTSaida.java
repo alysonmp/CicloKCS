@@ -20,6 +20,7 @@ public class ControlTSaida {
         
     public ControlTSaida(int compressor, double Tf, double QTfcor, Session session) {        
         //Recuperando dados da tabela Linear
+        compressor--;
         Criteria cr = session.createCriteria(ModelLinear.class); 
         List results = cr.list();
         

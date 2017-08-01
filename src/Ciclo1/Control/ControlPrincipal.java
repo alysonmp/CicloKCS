@@ -217,7 +217,7 @@ public class ControlPrincipal {
         Transaction tx = session.beginTransaction();
         
         if(results.isEmpty()){
-            String csvFile = "src/Csv/Cva.csv";
+            String csvFile = "src/Ciclo1/Csv/Cva.csv";
             BufferedReader br = null;
             String line = "";
             String csvSplitBy = ";";
@@ -249,7 +249,7 @@ public class ControlPrincipal {
                 }
             }
             
-            csvFile = "src/Csv/Cvb.csv";
+            csvFile = "src/Ciclo1/Csv/Cvb.csv";
             br = null;
             line = "";
             csvSplitBy = ";";
@@ -288,7 +288,7 @@ public class ControlPrincipal {
         tx = session.beginTransaction();
         
         if(results.isEmpty()){
-            String csvFile = "src/Csv/drT70.csv";
+            String csvFile = "src/Ciclo1/Csv/drT70.csv";
             BufferedReader br = null;
             String line = "";
             String csvSplitBy = ";";
@@ -320,7 +320,7 @@ public class ControlPrincipal {
                 }
             }
             
-            csvFile = "src/Csv/drT80.csv";
+            csvFile = "src/Ciclo1/Csv/drT80.csv";
             br = null;
             line = "";
             csvSplitBy = ";";
@@ -352,7 +352,7 @@ public class ControlPrincipal {
                 }
             }
             
-            csvFile = "src/Csv/eqro.csv";
+            csvFile = "src/Ciclo1/Csv/eqro.csv";
             br = null;
             line = "";
             csvSplitBy = ";";
@@ -384,7 +384,7 @@ public class ControlPrincipal {
                 }
             }
             
-            csvFile = "src/Csv/eqrs.csv";
+            csvFile = "src/Ciclo1/Csv/eqrs.csv";
             br = null;
             line = "";
             csvSplitBy = ";";

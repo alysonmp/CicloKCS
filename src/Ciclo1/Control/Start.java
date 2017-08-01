@@ -77,7 +77,14 @@ public class Start {
         ControlParametros parametros = new ControlParametros(P1, Tf, Pf, zi, Tres, this.session, ctrPrincipal);
         
         double DT1=(parametros.getTorvA()-parametros.getTbolA())-1;
-        T1=parametros.getTbolA()+(DT1*VE);
+        
+        double Tmin = parametros.getTbolA() + 0.3*DT1;
+        double Tmax = parametros.getTbolA() + 0.7*DT1;
+        
+        if(T1 < Tmin || T1 > Tmax){
+            JOptionPane.showMessageDialog(null, "T1 está abaixo da temperatura de bolha (Tbol = "+Tmin+") ou acima da temperatura de orvalho (Torv = "+Tmax+").","Error",0);
+            return;
+        }
 
         if(Tf-5<T1){
             JOptionPane.showMessageDialog(null,"Erro start","Error",0);

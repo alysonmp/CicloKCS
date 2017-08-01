@@ -4,6 +4,11 @@
  * and open the template in the editor.
  */
 package Ciclo1.Control;
+
+import Ciclo1.View.ViewInicio;
+
+
+
 /**
  *
  * @author alysonmp
@@ -11,6 +16,9 @@ package Ciclo1.Control;
 public class Main {
        
     public static void main(String[] args){
+        
+        ViewInicio vi = new ViewInicio();
         ControlPrincipal principal = new ControlPrincipal();
+        vi.getViewInicio().dispose();
     }
 }

@@ -57,6 +57,7 @@ import Ciclo1.Control.TabelaFluidos.ControlTolueneGas;
 import Ciclo1.Control.TabelaFluidos.ControlTolueneLiquido;
 import Ciclo1.Control.TabelaFluidos.ControlWaterGas;
 import Ciclo1.Control.TabelaFluidos.ControlWaterLiquido;
+import Ciclo1.Dao.ControlConexao;
 import Ciclo1.Model.Ciclo1.ModelFluidos;
 import Ciclo1.Model.ModelCVA;
 import Ciclo1.Model.ModelCVB;
@@ -77,12 +78,18 @@ import Ciclo1.Model.ModelQfpsoKCSMat;
 import Ciclo1.Model.TabelasFluidos.ModelButanoGas;
 import Ciclo1.Util.HibernateUtil;
 import Ciclo1.View.ViewPrincipal;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -94,10 +101,12 @@ import org.hibernate.Transaction;
  */
 public class ControlPrincipal {
     private ViewPrincipal viewPrincipal;
-    Session session;
+    private Session session;
+    private ControlConexao conexao;
     
     @SuppressWarnings("empty-statement")
     public ControlPrincipal(){
+        conexao = new ControlConexao();
         SessionFactory sf = HibernateUtil.getSessionFactory();
         this.session = sf.openSession();
         
@@ -528,7 +537,18 @@ public class ControlPrincipal {
         viewPrincipal.pack();
         viewPrincipal.setTitle("KCS");
         viewPrincipal.setVisible(true);
-        viewPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        viewPrincipal.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        viewPrincipal.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e){
+                try {
+                    conexao.getConn().close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ControlPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                System.exit(0);
+            }
+        });
     }
  
     public ViewPrincipal getViewPrincipal() {

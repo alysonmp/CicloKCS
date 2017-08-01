@@ -6,16 +6,11 @@
 package Ciclo1.Dao;
 
 import Ciclo1.Control.Main;
-import com.sun.java.accessibility.util.AWTEventMonitor;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.net.InetAddress;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import org.apache.derby.drda.NetworkServerControl;
 
 /**

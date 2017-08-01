@@ -884,6 +884,38 @@ public class ViewPrincipal extends JFrame{
     public void setTxtAT(JLabel txtAT) {
         this.txtAT = txtAT;
     }
+
+    public JComboBox<String> getComboT1() {
+        return comboT1;
+    }
+
+    public void setComboT1(JComboBox<String> comboT1) {
+        this.comboT1 = comboT1;
+    }
+
+    public JComboBox<String> getComboP1() {
+        return comboP1;
+    }
+
+    public void setComboP1(JComboBox<String> comboP1) {
+        this.comboP1 = comboP1;
+    }
+
+    public JComboBox<String> getComboTf() {
+        return comboTf;
+    }
+
+    public void setComboTf(JComboBox<String> comboTf) {
+        this.comboTf = comboTf;
+    }
+
+    public JComboBox<String> getComboPf() {
+        return comboPf;
+    }
+
+    public void setComboPf(JComboBox<String> comboPf) {
+        this.comboPf = comboPf;
+    }
     
     
 }

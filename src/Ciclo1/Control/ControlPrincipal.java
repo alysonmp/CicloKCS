@@ -423,7 +423,7 @@ public class ControlPrincipal {
         viewPrincipal.pack();
         viewPrincipal.setTitle("KCS");
         viewPrincipal.setVisible(true);
-        viewPrincipal.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        viewPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         viewPrincipal.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e){

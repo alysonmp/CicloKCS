@@ -29,7 +29,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.InputStreamReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -358,6 +357,7 @@ public class ControlPrincipal {
             }
             
             csvFile = "/Ciclo1/Csv/eqro.csv";
+            is = getClass().getResourceAsStream(csvFile);
             br = null;
             line = "";
             csvSplitBy = ";";

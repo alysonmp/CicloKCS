@@ -14,6 +14,7 @@ import org.hibernate.Session;
 public class ControlTurbina {
     
     private double S2, T4, S4, H4, H4s, xx4, xi4, yi4, P4, RP;
+    private String mensagem = "";
     
     public ControlTurbina(double H2, double Teff, double P2, double T2, double Pcon, double Pref, double Tref, double yi, Session session){
         ControlS_SistemaMix sistemaMix = new ControlS_SistemaMix(T2, P2, Pref, Tref, yi, session);
@@ -23,6 +24,8 @@ public class ControlTurbina {
         RP = P2/P4;
         if(RP<1.5){
             //hdhdh*kfhf
+        		mensagem = "Baixa razão de pressão na turbina";
+        		return;
         }
         
         ControlIsoentropiaTurbina controlIsoTurbina = new ControlIsoentropiaTurbina(Teff, P4, Pref, Tref, S2, H2, yi, T2, session);
@@ -90,5 +93,13 @@ public class ControlTurbina {
 
     public void setYi4(double yi4) {
         this.yi4 = yi4;
+    }
+    
+    public String getMensagem() {
+    		return mensagem;
+    }
+    
+    public void setMensagem(String mensagem) {
+    		this.mensagem = mensagem;
     }
 }

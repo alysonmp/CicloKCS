@@ -31,7 +31,7 @@ public class ControlRegeneradorLT {
         T11 = T10+(effLT*(T7-T10));
         
         if(T11+5 > T7){
-            mensagem = "Erro ControlRegeneradorLT";
+            mensagem = "Não é possível fazer recuperação de baixa temperatura. \nDiminuir a efetividade.";
             return;
         }
         

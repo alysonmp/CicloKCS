@@ -24,9 +24,13 @@ public class ControlMisturador {
         
         if(T7 <= Tbol){
             xx7=0;
+            xi7 = zi;
+            yi7 = 0;
         }else{
             if(T7 >= Torv){
                 xx7=1;
+                xi7 = 0;
+                yi7 = zi;
             }else{
                 ControlCompequi compequi = new ControlCompequi(P7, T7, session);
                 xi7 = compequi.getX();

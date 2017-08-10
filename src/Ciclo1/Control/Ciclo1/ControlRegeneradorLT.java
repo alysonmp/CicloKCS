@@ -76,7 +76,7 @@ public class ControlRegeneradorLT {
         while(erro1 >= 0.001){
             it = it+1;
             if(it > 300){
-                mensagem = "Erro ControlRegeneradorLT";
+                mensagem = "Com os parâmetros inseridos não é possível atingir a convergência.";
                 return;
             }
             if(Test >= Torv8){
@@ -163,12 +163,12 @@ public class ControlRegeneradorLT {
         }
         
         if(T8 < T10+5){
-            mensagem = "Erro ControlRegeneradorLT";
+            mensagem = "Temperatura de saída do regenerador muito elevada. Diminua a efetividade do recuperador de calor.";
             return;
         }
 
         if(T11 < T10+4){
-            mensagem = "Erro ControlRegeneradorLT";
+            mensagem = "Temperatura de saída do regenerador muito elevada. Diminua a efetividade do recuperador de calor.";
             return;
         }
     }

@@ -28,7 +28,7 @@ public class ControlEvaporador {
         double EntEVP = H1 - sistemamix.getHL();
         
         if(Tf2 > Tf){
-            mensagem = "Wrong number of input arguments, ControlEvaporador";
+            mensagem = "Pinch Point elevado, diminuir o Pinch Point.";
             return;
         }
         
@@ -37,7 +37,7 @@ public class ControlEvaporador {
         
         ControlTSaida tsaida = new ControlTSaida(compressor, Tf, QTf, session);
         if(tsaida.getTfout()<T12+5){
-            mensagem = "Erro ControlEvaporador";
+            mensagem = "Temperatura de saída da fonte de calor baixa. Aumentar o Pinch Point.";
             return;
         }
         

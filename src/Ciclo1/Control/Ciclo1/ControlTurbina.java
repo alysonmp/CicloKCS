@@ -23,9 +23,8 @@ public class ControlTurbina {
         P4 = Pcon;
         RP = P2/P4;
         if(RP<1.5){
-            //hdhdh*kfhf
-        		mensagem = "Baixa razão de pressão na turbina";
-        		return;
+            mensagem = "Baixa razão de pressão na turbina";
+            return;
         }
         
         ControlIsoentropiaTurbina controlIsoTurbina = new ControlIsoentropiaTurbina(Teff, P4, Pref, Tref, S2, H2, yi, T2, session);

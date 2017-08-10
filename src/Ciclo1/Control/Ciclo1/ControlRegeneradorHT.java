@@ -23,7 +23,7 @@ public class ControlRegeneradorHT {
         H12 = ((H3-H5)*(1-VF1))+H11;
         
         if(T5 < T11+5){
-            mensagem = "Erro ControlRegeneradorHT";
+            mensagem = "Não é possível fazer recuperação de baixa temperatura. \nDiminuir a efetividade.";
             return;
         }
         erro1 = 1;
@@ -40,7 +40,7 @@ public class ControlRegeneradorHT {
         while(erro1 >= 0.001){
             it = it+1;
             if(it > 300){
-                 mensagem = "Erro ControlRegeneradorHT";
+                mensagem = "Com os parâmetros inseridos não é possível atingir a convergência.";
                 return;
             }
             if(Test >= Torv12){
@@ -125,15 +125,6 @@ public class ControlRegeneradorHT {
                     T12=Test;
                 }  
             }
-        }
-
-        if(T12 > T3+5){
-           mensagem = "Erro ControlRegeneradorHT";
-           return;
-        }
-
-        if(T12 < T11+4){
-            mensagem = "Erro ControlRegeneradorHT";
         }
     }  
 

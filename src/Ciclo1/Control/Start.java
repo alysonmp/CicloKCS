@@ -72,7 +72,7 @@ public class Start {
         double VE = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtVE().getText());
         
         double P2 = P1;
-        Pf = 4000/100; //%bar
+        //Pf = 4000/100; //%bar
 
         ControlParametros parametros = new ControlParametros(P1, Tf, Pf, zi, Tres, this.session, ctrPrincipal);
         
@@ -87,7 +87,7 @@ public class Start {
         }
 
         if(Tf-5<T1){
-            JOptionPane.showMessageDialog(null,"Erro start","Error",0);
+            JOptionPane.showMessageDialog(null,"Temperatura de vaporização superior à temperatura da fonte de calor.","Error",0);
             return;
         }
 
@@ -113,6 +113,10 @@ public class Start {
         double y2 = separador.getYi();
         
         ControlTurbina turbina = new ControlTurbina(H2, Teff, P2, T2, Pcon, Pref, Tref, y2, session);
+        if(!turbina.getMensagem().equals("")){
+            JOptionPane.showMessageDialog(null,turbina.getMensagem(),"Error",0);
+            return;
+        }
         
         double x3 = separador.getX();
         

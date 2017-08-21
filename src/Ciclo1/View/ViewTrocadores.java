@@ -174,7 +174,7 @@ public class ViewTrocadores extends JPanel{
 		
 		g.gridx = 1;
 		g.gridy = 1;
-		this.add(painelRegeneradorHT, g);
+		this.add(painelRegeneradorHT, g); 
 		
 		g.gridx = 1;
 		g.gridy = 0;

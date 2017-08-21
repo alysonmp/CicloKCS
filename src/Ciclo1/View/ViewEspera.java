@@ -10,6 +10,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.net.URL;
+
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -26,9 +30,10 @@ public class ViewEspera{
     private JLabel labelMensagem;
     
     public ViewEspera(ControlPrincipal ctrlPrincipal) {
-        ImageIcon imageIcon = new ImageIcon(new ImageIcon("src/Ciclo1/Images/loading4.gif").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+    		URL url = this.getClass().getResource("/Ciclo1/Images/loading4.gif");
+        Icon icon = new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
         
-        labelEspera = new JLabel(imageIcon);
+        labelEspera = new JLabel(icon);
         panelEspera = new JPanel();
         labelMensagem = new JLabel("Realizando cálculos   ");
         
@@ -38,6 +43,7 @@ public class ViewEspera{
         panelEspera.add(labelMensagem, BorderLayout.EAST);
         panelEspera.setSize(200,100);
         panelEspera.setBackground(new Color(255,255,255));  
+        panelEspera.setBorder(BorderFactory.createLineBorder(Color.black));
     }
 
     public JPanel getPanelEspera() {

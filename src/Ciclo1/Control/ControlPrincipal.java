@@ -5,6 +5,7 @@
  */
 package Ciclo1.Control;
 
+import Ciclo1.Control.Conversao.ControlConverte;
 import Ciclo1.Dao.ControlConexao;
 import Ciclo1.Model.Ciclo1.ModelFluidos;
 import Ciclo1.Model.ModelCVA;
@@ -50,6 +51,8 @@ public class ControlPrincipal {
     private ViewPrincipal viewPrincipal;
     private Session session;
     private ControlConexao conexao;
+    
+    private ControlConverte controlConverte = new ControlConverte(); 
     
     @SuppressWarnings("empty-statement")
     public ControlPrincipal(){
@@ -252,6 +255,7 @@ public class ControlPrincipal {
             
             csvFile = "/Ciclo1/Csv/Cvb.csv";
             is = getClass().getResourceAsStream(csvFile);
+
             br = null;
             line = "";
             csvSplitBy = ";";
@@ -292,6 +296,7 @@ public class ControlPrincipal {
         if(results.isEmpty()){
             String csvFile = "/Ciclo1/Csv/drt70.csv";
             InputStream is = getClass().getResourceAsStream(csvFile);
+
             BufferedReader br = null;
             String line = "";
             String csvSplitBy = ";";
@@ -325,6 +330,7 @@ public class ControlPrincipal {
             
             csvFile = "/Ciclo1/Csv/drt80.csv";
             is = getClass().getResourceAsStream(csvFile);
+            
             br = null;
             line = "";
             csvSplitBy = ";";
@@ -358,6 +364,7 @@ public class ControlPrincipal {
             
             csvFile = "/Ciclo1/Csv/eqro.csv";
             is = getClass().getResourceAsStream(csvFile);
+
             br = null;
             line = "";
             csvSplitBy = ";";
@@ -391,6 +398,7 @@ public class ControlPrincipal {
             
             csvFile = "/Ciclo1/Csv/eqrs.csv";
             is = getClass().getResourceAsStream(csvFile);
+
             br = null;
             line = "";
             csvSplitBy = ";";
@@ -458,6 +466,14 @@ public class ControlPrincipal {
     public void setSession(Session session) {
         this.session = session;
     }
+
+	public ControlConverte getControlConverte() {
+		return controlConverte;
+	}
+
+	public void setControlConverte(ControlConverte controlConverte) {
+		this.controlConverte = controlConverte;
+	}
 }
 
 

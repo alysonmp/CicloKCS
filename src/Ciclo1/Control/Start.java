@@ -18,6 +18,8 @@ import Ciclo1.Control.Ciclo1.ControlSeparador;
 import Ciclo1.Control.Ciclo1.ControlTurbina;
 import Ciclo1.Control.Ciclo1.ControlValvula;
 import Ciclo1.Control.Conversao.ControlConverte;
+import Ciclo1.View.ViewSaida;
+
 import javax.swing.JOptionPane;
 import org.hibernate.Session;
 
@@ -34,47 +36,49 @@ public class Start {
         this.session = session;
         
         double P1;
-        if(!ctrPrincipal.getViewPrincipal().getComboP1().getSelectedItem().toString().equals("kPa")){
-            P1 = converte.converte(ctrPrincipal.getViewPrincipal().getComboP1().getSelectedItem().toString(), "kPa", Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtP1().getText()));
+        if(!ctrPrincipal.getViewPrincipal().getDadosOp().getComboP1().getSelectedItem().toString().equals("kPa")){
+            P1 = converte.converte(ctrPrincipal.getViewPrincipal().getDadosOp().getComboP1().getSelectedItem().toString(), "kPa", Double.parseDouble(ctrPrincipal.getViewPrincipal().getDadosOp().getTxtP1().getText()));
         }else{
-            P1 = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtP1().getText());
+            P1 = Double.parseDouble(ctrPrincipal.getViewPrincipal().getDadosOp().getTxtP1().getText());
         }
         
         double T1;
-        if(!ctrPrincipal.getViewPrincipal().getComboT1().getSelectedItem().toString().equals("K")){
-            T1 = converte.converte(ctrPrincipal.getViewPrincipal().getComboT1().getSelectedItem().toString(), "K", Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtT1().getText()));
+        if(!ctrPrincipal.getViewPrincipal().getDadosOp().getComboT1().getSelectedItem().toString().equals("K")){
+            T1 = converte.converte(ctrPrincipal.getViewPrincipal().getDadosOp().getComboT1().getSelectedItem().toString(), "K", Double.parseDouble(ctrPrincipal.getViewPrincipal().getDadosOp().getTxtT1().getText()));
         }else{
-            T1 = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtT1().getText());
+            T1 = Double.parseDouble(ctrPrincipal.getViewPrincipal().getDadosOp().getTxtT1().getText());
         }
         
-        double PP = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtPP().getText());
-        double SUBT = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtSUBT().getText());
+        double PP = Double.parseDouble(ctrPrincipal.getViewPrincipal().getDadosOp().getTxtPP().getText());
+        double SUBT = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTrocadores().getFieldRegHTSubt().getText());
         
         double Tf;
-        if(!ctrPrincipal.getViewPrincipal().getComboTf().getSelectedItem().toString().equals("K")){
-            Tf = converte.converte(ctrPrincipal.getViewPrincipal().getComboTf().getSelectedItem().toString(), "kPa", Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtTf().getText()));
+        if(!ctrPrincipal.getViewPrincipal().getFonteCalor().getComboTf().getSelectedItem().toString().equals("K")){
+            Tf = converte.converte(ctrPrincipal.getViewPrincipal().getFonteCalor().getComboTf().getSelectedItem().toString(), "kPa", Double.parseDouble(ctrPrincipal.getViewPrincipal().getFonteCalor().getTxtTf().getText()));
         }else{
-            Tf = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtTf().getText());
+            Tf = Double.parseDouble(ctrPrincipal.getViewPrincipal().getFonteCalor().getTxtTf().getText());
         }
         
         double Pf;
-        if(!ctrPrincipal.getViewPrincipal().getComboPf().getSelectedItem().toString().equals("K")){
-            Pf = converte.converte(ctrPrincipal.getViewPrincipal().getComboPf().getSelectedItem().toString(), "kPa", Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtPf().getText()));
+        if(!ctrPrincipal.getViewPrincipal().getFonteCalor().getComboPf().getSelectedItem().toString().equals("K")){
+            Pf = converte.converte(ctrPrincipal.getViewPrincipal().getFonteCalor().getComboPf().getSelectedItem().toString(), "kPa", Double.parseDouble(ctrPrincipal.getViewPrincipal().getFonteCalor().getTxtPf().getText()));
         }else{
-            Pf = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtPf().getText());
+            Pf = Double.parseDouble(ctrPrincipal.getViewPrincipal().getFonteCalor().getTxtPf().getText());
         }
         
-        double Mf = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtMf().getText());
-        double Tres = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtTres().getText());
+        double Mf = Double.parseDouble(ctrPrincipal.getViewPrincipal().getFonteCalor().getTxtMf().getText());
+        double Tcon = Double.parseDouble(ctrPrincipal.getViewPrincipal().getDadosOp().getTxtTcon().getText());
         int compressor = ctrPrincipal.getViewPrincipal().getComp();
-        double effLT = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxteffLt().getText());
-        double zi = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtzi().getText());
-        double VE = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTxtVE().getText());
+        double effLT = Double.parseDouble(ctrPrincipal.getViewPrincipal().getTrocadores().getFieldRegLTEff().getText());
+        double zi = Double.parseDouble(ctrPrincipal.getViewPrincipal().getDadosOp().getTxtzi().getText());
+        
+        double Beff = Double.parseDouble(ctrPrincipal.getViewPrincipal().getDadosOp().getTxtBeff().getText());
+        	double Teff = Double.parseDouble(ctrPrincipal.getViewPrincipal().getDadosOp().getTxtTeff().getText());
         
         double P2 = P1;
         //Pf = 4000/100; //%bar
 
-        ControlParametros parametros = new ControlParametros(P1, Tf, Pf, zi, Tres, this.session, ctrPrincipal);
+        ControlParametros parametros = new ControlParametros(P1, Tf, Pf, zi, Tcon, this.session, ctrPrincipal);
         
         double DT1=(parametros.getTorvA()-parametros.getTbolA())-1;
         
@@ -91,9 +95,7 @@ public class Start {
             return;
         }
 
-        double Beff = parametros.getBeff();
         double Pcon = parametros.getPcon();
-        double Tcon = parametros.getTcon();
         double Pref = parametros.getPref();
         double Tref = parametros.getTref();
         
@@ -108,7 +110,6 @@ public class Start {
         ControlSeparador separador = new ControlSeparador(P1, T1, zi, Pref, Tref, session);
         
         double H2 = separador.getH2();
-        double Teff = parametros.getTeff();
         double T2 = separador.getT2();
         double y2 = separador.getYi();
         
@@ -212,19 +213,20 @@ public class Start {
         
         double ec=(Wn/QTf)*100;
         
+        ViewSaida saida = new ViewSaida(ctrPrincipal);
         
-        ctrPrincipal.getViewPrincipal().getTxtEc().setText(round(ec,3)+"%");
-        ctrPrincipal.getViewPrincipal().getTxtQcon().setText(round(Qcon,3)+"");
-        ctrPrincipal.getViewPrincipal().getTxtQLHR().setText(round(QLHR,3)+"");
-        ctrPrincipal.getViewPrincipal().getTxtQHHR().setText(round(QHHR,3)+"");
-        ctrPrincipal.getViewPrincipal().getTxtWt().setText(round(Wt,3)+"");
-        ctrPrincipal.getViewPrincipal().getTxtWn().setText(round(Wn,3)+"");
-        ctrPrincipal.getViewPrincipal().getTxtWb().setText(round(Wb,3)+"");
-        ctrPrincipal.getViewPrincipal().getTxtAcon().setText(round(Acon,3)+"");
-        ctrPrincipal.getViewPrincipal().getTxtAevp().setText(round(Aevp,3)+"");
-        ctrPrincipal.getViewPrincipal().getTxtALHR().setText(round(ALHR,3)+"");
-        ctrPrincipal.getViewPrincipal().getTxtAHHR().setText(round(AHHR,3)+"");
-        ctrPrincipal.getViewPrincipal().getTxtAT().setText(round(AT,3)+"");
+        saida.getTxtEc().setText(round(ec,3)+"%");
+        saida.getTxtQcon().setText(round(Qcon,3)+"");
+        saida.getTxtQLHR().setText(round(QLHR,3)+"");
+        saida.getTxtQHHR().setText(round(QHHR,3)+"");
+        saida.getTxtWt().setText(round(Wt,3)+"");
+        saida.getTxtWn().setText(round(Wn,3)+"");
+        saida.getTxtWb().setText(round(Wb,3)+"");
+        saida.getTxtAcon().setText(round(Acon,3)+"");
+        saida.getTxtAevp().setText(round(Aevp,3)+"");
+        saida.getTxtALHR().setText(round(ALHR,3)+"");
+        saida.getTxtAHHR().setText(round(AHHR,3)+"");
+        saida.getTxtAT().setText(round(AT,3)+"");
     }
     
     public double round(double value, int places) {

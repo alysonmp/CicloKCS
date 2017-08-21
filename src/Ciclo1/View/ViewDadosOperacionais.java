@@ -18,25 +18,25 @@ import Ciclo1.Control.ControlPrincipal;
 public class ViewDadosOperacionais extends JPanel{
 	
 	//LABELS
-	private JLabel lblT1 = new JLabel("T1: ");
-    private JLabel lblP1 = new JLabel("P1: ");
-    private JLabel lblPP = new JLabel("PP: ");
-    private JLabel lblSUBT = new JLabel("SUBT: ");
-    private JLabel lblzi = new JLabel("zi: ");
-    private JLabel lblVE = new JLabel("VE: ");
-    private JLabel lblTres = new JLabel("Tres: ");
+	private JLabel lblT1 = new JLabel("<html>T<sub>1 </sub></html>");
+    private JLabel lblP1 = new JLabel("<html>P<sub>1 </sub></html>");
+    private JLabel lblPP = new JLabel("<html>P<sub>P </sub></html>");
+    private JLabel lblzi = new JLabel("<html>z<sub>i </sub></html>");
+    private JLabel lblTcon = new JLabel("<html>T<sub>con </sub></html>");
+    private JLabel lblTeff = new JLabel("<html>&eta;<sub>T</sub></html>");
+    private JLabel lblBeff = new JLabel("<html>&eta;<sub>B</sub></html>");
 	
     //FIELDS
     private JTextField txtT1 = new JTextField("20",10);
     private JTextField txtP1 = new JTextField("20");
     private JTextField txtPP = new JTextField("2");
-    private JTextField txtSUBT = new JTextField("0");
-    private JTextField txtTres = new JTextField("298.15");
+    private JTextField txtTcon = new JTextField("298.15");
     private JTextField txtzi = new JTextField("0.8");
-    private JTextField txtVE = new JTextField("0.5");
+    private JTextField txtBeff = new JTextField("0.8");
+    private JTextField txtTeff = new JTextField("0.8");
     
     //COMBOS
-    private String[] pressoes = {"kPa", "atm", "bar"};
+    private String[] pressoes = {"bar", "kPa", "atm"};
     private String[] temps = {"K", "°C", "°F"};
     
     private JComboBox<String> comboT1 = new JComboBox<>(temps);
@@ -98,29 +98,16 @@ public class ViewDadosOperacionais extends JPanel{
         this.add(txtPP,g);
         
         g.gridx = 0;
-        g.gridy = 3;
-        g.gridwidth = 1;
-        g.fill = GridBagConstraints.HORIZONTAL;
-        this.add(lblSUBT,g);
-                
-        g.gridx = 1;
-        g.gridy = 3;
-        g.gridwidth = 2;
-        g.fill = GridBagConstraints.HORIZONTAL;
-        this.add(txtSUBT,g);
-        
-        
-        g.gridx = 0;
         g.gridy = 4;
         g.gridwidth = 1;
         g.fill = GridBagConstraints.HORIZONTAL;
-        this.add(lblTres,g);
+        this.add(lblTcon,g);
         
         g.gridx = 1;
         g.gridy = 4;
         g.gridwidth = 2;
         g.fill = GridBagConstraints.HORIZONTAL;
-        this.add(txtTres,g);
+        this.add(txtTcon,g);
         
         g.gridx = 0;
         g.gridy = 5;
@@ -138,13 +125,25 @@ public class ViewDadosOperacionais extends JPanel{
         g.gridy = 6;
         g.gridwidth = 1;
         g.fill = GridBagConstraints.HORIZONTAL;
-        this.add(lblVE,g);
+        this.add(lblBeff,g);
         
         g.gridx = 1;
         g.gridy = 6;
         g.gridwidth = 2;
         g.fill = GridBagConstraints.HORIZONTAL;
-        this.add(txtVE,g);
+        this.add(txtBeff,g);
+        
+        g.gridx = 0;
+        g.gridy = 7;
+        g.gridwidth = 1;
+        g.fill = GridBagConstraints.HORIZONTAL;
+        this.add(lblTeff,g);
+        
+        g.gridx = 1;
+        g.gridy = 7;
+        g.gridwidth = 2;
+        g.fill = GridBagConstraints.HORIZONTAL;
+        this.add(txtTeff,g);
         
         comboT1.addItemListener(new ItemListener() {
             
@@ -194,21 +193,13 @@ public class ViewDadosOperacionais extends JPanel{
     public JLabel getLblPP() {
         return lblPP;
     }
-
-    public JLabel getLblSUBT() {
-        return lblSUBT;
-    }
     
-    public JLabel getLblTres() {
-        return lblTres;
+    public JLabel getLblTcon() {
+        return lblTcon;
     }
     
     public JLabel getLblzi() {
         return lblzi;
-    }
-
-    public JLabel getLblVE() {
-        return lblVE;
     }
     
     public JTextField getTxtP1() {
@@ -218,21 +209,13 @@ public class ViewDadosOperacionais extends JPanel{
     public JTextField getTxtPP() {
         return txtPP;
     }
-
-    public JTextField getTxtSUBT() {
-        return txtSUBT;
-    }
     
-    public JTextField getTxtTres() {
-        return txtTres;
+    public JTextField getTxtTcon() {
+        return txtTcon;
     }
     
     public JTextField getTxtzi() {
         return txtzi;
-    }
-
-    public JTextField getTxtVE() {
-        return txtVE;
     }
     
     public JTextField getTxtT1() {
@@ -258,4 +241,36 @@ public class ViewDadosOperacionais extends JPanel{
     public void setComboP1(JComboBox<String> comboP1) {
         this.comboP1 = comboP1;
     }
+
+	public JTextField getTxtBeff() {
+		return txtBeff;
+	}
+
+	public void setTxtBeff(JTextField txtBeff) {
+		this.txtBeff = txtBeff;
+	}
+
+	public JTextField getTxtTeff() {
+		return txtTeff;
+	}
+
+	public void setTxtTeff(JTextField txtTeff) {
+		this.txtTeff = txtTeff;
+	}
+
+	public void setTxtP1(JTextField txtP1) {
+		this.txtP1 = txtP1;
+	}
+
+	public void setTxtPP(JTextField txtPP) {
+		this.txtPP = txtPP;
+	}
+	
+	public void setTxtTcon(JTextField txtTcon) {
+		this.txtTcon = txtTcon;
+	}
+
+	public void setTxtzi(JTextField txtzi) {
+		this.txtzi = txtzi;
+	}
 }

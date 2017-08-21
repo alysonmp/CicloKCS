@@ -1,6 +1,7 @@
 package Ciclo1.View;
 
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -16,9 +17,9 @@ import Ciclo1.Control.ControlPrincipal;
 public class ViewFonteCalor extends JPanel{
 
 	//LABELS
-	private JLabel lblTf = new JLabel("Tf: ");
-    private JLabel lblPf = new JLabel("Pf: ");
-    private JLabel lblMf = new JLabel("Mf: ");
+	private JLabel lblTf = new JLabel("<html>T<sub>f </sub></html> ");
+    private JLabel lblPf = new JLabel("<html>P<sub>f </sub></html>");
+    private JLabel lblMf = new JLabel("<html>&#7745;<sub>f</sub></html>");
     private JLabel lblcompressor = new JLabel("Compressor: ");
 	
 	//FIELDS
@@ -40,6 +41,7 @@ public class ViewFonteCalor extends JPanel{
     
 	public ViewFonteCalor(ControlPrincipal ctrlPrincipal) {
 		
+		this.setLayout(new GridBagLayout());
 		GridBagConstraints g = new GridBagConstraints();
 		
 		g.gridx = 0;
@@ -141,6 +143,16 @@ public class ViewFonteCalor extends JPanel{
                     default:
                         comp = 0;
                         break;
+                }
+                
+                if(comp != 0){
+                    txtMf.setEnabled(false);
+                    txtTf.setEnabled(false);
+                    txtPf.setEnabled(false);
+                }else{
+                    txtMf.setEnabled(true);
+                    txtTf.setEnabled(true);
+                    txtPf.setEnabled(true);
                 }
                 
                 ctrlPrincipal.getViewPrincipal().setComp(comp);

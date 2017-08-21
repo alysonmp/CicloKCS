@@ -17,39 +17,52 @@ public class ViewTrocadores extends JPanel{
 	JLabel labelEvapK = new JLabel("K");
 	
 	//Evaporador Field
-	JTextField fieldEvapCore = new JTextField("13",15);
-	JTextField fieldEvapK = new JTextField("16",15);
+	JTextField fieldEvapCore = new JTextField("13",10);
+	JTextField fieldEvapK = new JTextField("16",10);
 	
 	//Condensador Label
 	JLabel labelCondCore = new JLabel("Core");
 	JLabel labelCondK = new JLabel("K");
 	
 	//Condensador Field
-	JTextField fieldCondCore = new JTextField("13",15);
-	JTextField fieldCondK = new JTextField("16",15);
+	JTextField fieldCondCore = new JTextField("13",10);
+	JTextField fieldCondK = new JTextField("16",10);
 	
-	//Regenerador Label
-	JLabel labelRegCore = new JLabel("Core");
-	JLabel labelRegK = new JLabel("K");
-	JLabel labelRegEff = new JLabel("<html>&isin;</html>");
+	//RegeneradorLT Label
+	JLabel labelRegLTCore = new JLabel("Core");
+	JLabel labelRegLTK = new JLabel("K");
+	JLabel labelRegLTEff = new JLabel("<html>&isin;</html>");
 	
-	//Regenerador Field
-	JTextField fieldRegCore = new JTextField("13",15);
-	JTextField fieldRegK = new JTextField("16",15);
-	JTextField fieldRegEff = new JTextField("0",15);
+	//RegeneradorLT Field
+	JTextField fieldRegLTCore = new JTextField("13",10);
+	JTextField fieldRegLTK = new JTextField("16",10);
+	JTextField fieldRegLTEff = new JTextField("0",10);
+	
+	//RegeneradorHT Label
+	JLabel labelRegHTCore = new JLabel("Core");
+	JLabel labelRegHTK = new JLabel("K");
+	JLabel labelRegHTEff = new JLabel("SUBT");
+	
+	//RegeneradorHT Field
+	JTextField fieldRegHTCore = new JTextField("13",10);
+	JTextField fieldRegHTK = new JTextField("16",10);
+	JTextField fieldRegHTSubt = new JTextField("0",10);
 	
 	JPanel painelEvaporador;
-	JPanel painelRegenerador;
+	JPanel painelRegeneradorLT;
+	JPanel painelRegeneradorHT;
 	JPanel painelCondensador;
 	
 	public ViewTrocadores() {
 		
 		painelEvaporador = new JPanel(new GridBagLayout());
-		painelRegenerador = new JPanel(new GridBagLayout());
+		painelRegeneradorLT = new JPanel(new GridBagLayout());
+		painelRegeneradorHT = new JPanel(new GridBagLayout());
 		painelCondensador = new JPanel(new GridBagLayout());
 		
 		painelEvaporador.setBorder(BorderFactory.createTitledBorder(BorderFactory.createBevelBorder(1, Color.lightGray, Color.lightGray), "Evaporador", 1, 2, new Font("Times New Roman", 1, 12), Color.darkGray));
-		painelRegenerador.setBorder(BorderFactory.createTitledBorder(BorderFactory.createBevelBorder(1, Color.lightGray, Color.lightGray), "Regenerador", 1, 2, new Font("Times New Roman", 1, 12), Color.darkGray));
+		painelRegeneradorLT.setBorder(BorderFactory.createTitledBorder(BorderFactory.createBevelBorder(1, Color.lightGray, Color.lightGray), "Regenerador LT", 1, 2, new Font("Times New Roman", 1, 12), Color.darkGray));
+		painelRegeneradorHT.setBorder(BorderFactory.createTitledBorder(BorderFactory.createBevelBorder(1, Color.lightGray, Color.lightGray), "Regenerador HT", 1, 2, new Font("Times New Roman", 1, 12), Color.darkGray));
 		painelCondensador.setBorder(BorderFactory.createTitledBorder(BorderFactory.createBevelBorder(1, Color.lightGray, Color.lightGray), "Condensador", 1, 2, new Font("Times New Roman", 1, 12), Color.darkGray));
 		
 		this.setLayout(new GridBagLayout());
@@ -75,33 +88,61 @@ public class ViewTrocadores extends JPanel{
 		g.gridy = 1;
 		painelEvaporador.add(fieldEvapK, g);
 		
-		//Regenerador
+		//RegeneradorLT
 		g.gridx = 0;
 		g.gridy = 0;
 		g.fill = GridBagConstraints.HORIZONTAL;
-		painelRegenerador.add(labelRegCore, g);
+		painelRegeneradorLT.add(labelRegLTCore, g);
 		
 		g.gridx = 1;
 		g.gridy = 0;
-		painelRegenerador.add(fieldRegCore, g);
+		painelRegeneradorLT.add(fieldRegLTCore, g);
 		
 		g.gridx = 0;
 		g.gridy = 1;
-		painelRegenerador.add(labelRegK, g);
+		painelRegeneradorLT.add(labelRegLTK, g);
 		
 		g.gridx = 1;
 		g.gridy = 1;
-		painelRegenerador.add(fieldRegK, g);
+		painelRegeneradorLT.add(fieldRegLTK, g);
 		
 		g.gridx = 0;
 		g.gridy = 2;
-		painelRegenerador.add(labelRegEff, g);
+		painelRegeneradorLT.add(labelRegLTEff, g);
 		Font font = new Font("Arial", Font.BOLD, 18);
-		labelRegEff.setFont(font);
+		labelRegLTEff.setFont(font);
 		
 		g.gridx = 1;
 		g.gridy = 2;
-		painelRegenerador.add(fieldRegEff, g);
+		painelRegeneradorLT.add(fieldRegLTEff, g);
+		
+		//RegeneradorHT
+		g.gridx = 0;
+		g.gridy = 0;
+		g.fill = GridBagConstraints.HORIZONTAL;
+		painelRegeneradorHT.add(labelRegHTCore, g);
+		
+		g.gridx = 1;
+		g.gridy = 0;
+		painelRegeneradorHT.add(fieldRegHTCore, g);
+		
+		g.gridx = 0;
+		g.gridy = 1;
+		painelRegeneradorHT.add(labelRegHTK, g);
+		
+		g.gridx = 1;
+		g.gridy = 1;
+		painelRegeneradorHT.add(fieldRegHTK, g);
+		
+		g.gridx = 0;
+		g.gridy = 2;
+		painelRegeneradorHT.add(labelRegHTEff, g);
+		font = new Font("Arial", 0, 12);
+		labelRegHTEff.setFont(font);
+		
+		g.gridx = 1;
+		g.gridy = 2;
+		painelRegeneradorHT.add(fieldRegHTSubt, g);
 		
 		//Condensador
 		g.gridx = 0;
@@ -129,10 +170,14 @@ public class ViewTrocadores extends JPanel{
 		
 		g.gridx = 0;
 		g.gridy = 1;
-		this.add(painelRegenerador, g);
+		this.add(painelRegeneradorLT, g);
 		
-		g.gridx = 0;
-		g.gridy = 2;
+		g.gridx = 1;
+		g.gridy = 1;
+		this.add(painelRegeneradorHT, g);
+		
+		g.gridx = 1;
+		g.gridy = 0;
 		this.add(painelCondensador, g);
 	}
 
@@ -168,27 +213,51 @@ public class ViewTrocadores extends JPanel{
 		this.fieldCondK = fieldCondK;
 	}
 
-	public JTextField getFieldRegCore() {
-		return fieldRegCore;
+	public JTextField getFieldRegLTCore() {
+		return fieldRegLTCore;
 	}
 
-	public void setFieldRegCore(JTextField fieldRegCore) {
-		this.fieldRegCore = fieldRegCore;
+	public void setFieldRegLTCore(JTextField fieldRegLTCore) {
+		this.fieldRegLTCore = fieldRegLTCore;
 	}
 
-	public JTextField getFieldRegK() {
-		return fieldRegK;
+	public JTextField getFieldRegLTK() {
+		return fieldRegLTK;
 	}
 
-	public void setFieldRegK(JTextField fieldRegK) {
-		this.fieldRegK = fieldRegK;
+	public void setFieldRegLTK(JTextField fieldRegLTK) {
+		this.fieldRegLTK = fieldRegLTK;
 	}
 
-	public JTextField getFieldRegEff() {
-		return fieldRegEff;
+	public JTextField getFieldRegLTEff() {
+		return fieldRegLTEff;
 	}
 
-	public void setFieldRegEff(JTextField fieldRegEff) {
-		this.fieldRegEff = fieldRegEff;
+	public void setFieldRegLTEff(JTextField fieldRegLTEff) {
+		this.fieldRegLTEff = fieldRegLTEff;
+	}
+
+	public JTextField getFieldRegHTCore() {
+		return fieldRegHTCore;
+	}
+
+	public void setFieldRegHTCore(JTextField fieldRegHTCore) {
+		this.fieldRegHTCore = fieldRegHTCore;
+	}
+
+	public JTextField getFieldRegHTK() {
+		return fieldRegHTK;
+	}
+
+	public void setFieldRegHTK(JTextField fieldRegHTK) {
+		this.fieldRegHTK = fieldRegHTK;
+	}
+
+	public JTextField getFieldRegHTSubt() {
+		return fieldRegHTSubt;
+	}
+
+	public void setFieldRegHTSubt(JTextField fieldRegHTSubt) {
+		this.fieldRegHTSubt = fieldRegHTSubt;
 	}
 }

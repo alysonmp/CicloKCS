@@ -16,8 +16,7 @@ public class ControlParametros {
     
     private double Tcon, TbolA, yii, TorvA, xii, Pcon, TbolB, TorvB, Beff, Pref, Tref, T1max, Teff;
     
-    public ControlParametros(double P1, double Tf, double Pf, double zi, double Tres, Session session, ControlPrincipal ctrPrincipal){
-        Tcon = Tres+15;
+    public ControlParametros(double P1, double Tf, double Pf, double zi, double Tcon, Session session, ControlPrincipal ctrPrincipal){
         ControlPBolha pBolha = new ControlPBolha(Tcon, zi, session);
         Pcon = pBolha.getPbol();
         
@@ -36,12 +35,10 @@ public class ControlParametros {
         torvalho = new ControlTorvalho(Pcon, zi, session);
         TorvB = torvalho.getTorv();
         xii = torvalho.getXi();
-        
-        Beff=0.8;
+    
         Pref=5000/100;
         Tref=273.15;
         T1max=Tf-5;
-        Teff=0.8;
     }
 
     public double getTcon() {

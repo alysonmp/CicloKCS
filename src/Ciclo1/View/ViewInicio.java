@@ -8,7 +8,6 @@ package Ciclo1.View;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,7 +28,7 @@ public class ViewInicio {
         
         JLabel l = new JLabel("\n\nAguarde...");
         l.setFont(new Font("TimesRoman",Font.BOLD,50));
-        
+ 
         l.setHorizontalAlignment(JLabel.CENTER);
         l.setVerticalAlignment(JLabel.CENTER);
         

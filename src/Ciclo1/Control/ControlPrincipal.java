@@ -30,7 +30,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -39,7 +38,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -222,9 +220,8 @@ public class ControlPrincipal {
         Transaction tx = session.beginTransaction();
         
         if(results.isEmpty()){
-        		String csvFile = "/Ciclo1/Csv/Cva.csv";
+            String csvFile = "/Ciclo1/Csv/Cva.csv";
             InputStream is = getClass().getResourceAsStream(csvFile);
-            
             BufferedReader br = null;
             String line = "";
             String csvSplitBy = ";";
@@ -258,7 +255,7 @@ public class ControlPrincipal {
             
             csvFile = "/Ciclo1/Csv/Cvb.csv";
             is = getClass().getResourceAsStream(csvFile);
-            
+
             br = null;
             line = "";
             csvSplitBy = ";";
@@ -299,7 +296,7 @@ public class ControlPrincipal {
         if(results.isEmpty()){
             String csvFile = "/Ciclo1/Csv/drt70.csv";
             InputStream is = getClass().getResourceAsStream(csvFile);
-            
+
             BufferedReader br = null;
             String line = "";
             String csvSplitBy = ";";
@@ -367,7 +364,7 @@ public class ControlPrincipal {
             
             csvFile = "/Ciclo1/Csv/eqro.csv";
             is = getClass().getResourceAsStream(csvFile);
-            
+
             br = null;
             line = "";
             csvSplitBy = ";";
@@ -401,7 +398,7 @@ public class ControlPrincipal {
             
             csvFile = "/Ciclo1/Csv/eqrs.csv";
             is = getClass().getResourceAsStream(csvFile);
-            
+
             br = null;
             line = "";
             csvSplitBy = ";";

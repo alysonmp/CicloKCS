@@ -5,6 +5,7 @@
  */
 package Ciclo1.Control;
 
+import Ciclo1.Control.Conversao.ControlConverte;
 import Ciclo1.Dao.ControlConexao;
 import Ciclo1.Model.Ciclo1.ModelFluidos;
 import Ciclo1.Model.ModelCVA;
@@ -31,6 +32,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -50,6 +53,8 @@ public class ControlPrincipal {
     private ViewPrincipal viewPrincipal;
     private Session session;
     private ControlConexao conexao;
+    
+    private ControlConverte controlConverte = new ControlConverte(); 
     
     @SuppressWarnings("empty-statement")
     public ControlPrincipal(){
@@ -217,7 +222,9 @@ public class ControlPrincipal {
         Transaction tx = session.beginTransaction();
         
         if(results.isEmpty()){
-            String csvFile = "src/Ciclo1/Csv/Cva.csv";
+        		String csvFile = "/Ciclo1/Csv/Cva.csv";
+            InputStream is = getClass().getResourceAsStream(csvFile);
+            
             BufferedReader br = null;
             String line = "";
             String csvSplitBy = ";";
@@ -226,7 +233,7 @@ public class ControlPrincipal {
             try{
                 cr = this.session.createCriteria(ModelCVA.class);
                 results = cr.list();
-                br = new BufferedReader(new FileReader(csvFile));
+                br = new BufferedReader(new InputStreamReader(is));
                 while((line = br.readLine()) != null){
                     String[] table_c = line.split(csvSplitBy);
                     for(int i = 0; i < table_c.length; i++){
@@ -249,7 +256,9 @@ public class ControlPrincipal {
                 }
             }
             
-            csvFile = "src/Ciclo1/Csv/Cvb.csv";
+            csvFile = "/Ciclo1/Csv/Cvb.csv";
+            is = getClass().getResourceAsStream(csvFile);
+            
             br = null;
             line = "";
             csvSplitBy = ";";
@@ -258,7 +267,7 @@ public class ControlPrincipal {
             try{
                 cr = this.session.createCriteria(ModelCVB.class);
                 results = cr.list();
-                br = new BufferedReader(new FileReader(csvFile));
+                br = new BufferedReader(new InputStreamReader(is));
                 while((line = br.readLine()) != null){
                     String[] table_c = line.split(csvSplitBy);
                     for(int i = 0; i < table_c.length; i++){
@@ -288,7 +297,9 @@ public class ControlPrincipal {
         tx = session.beginTransaction();
         
         if(results.isEmpty()){
-            String csvFile = "src/Ciclo1/Csv/drT70.csv";
+            String csvFile = "/Ciclo1/Csv/drt70.csv";
+            InputStream is = getClass().getResourceAsStream(csvFile);
+            
             BufferedReader br = null;
             String line = "";
             String csvSplitBy = ";";
@@ -296,7 +307,7 @@ public class ControlPrincipal {
             try{
                 cr = this.session.createCriteria(ModelDRT70.class);
                 results = cr.list();
-                br = new BufferedReader(new FileReader(csvFile));
+                br = new BufferedReader(new InputStreamReader(is));
                 while((line = br.readLine()) != null){
                     double[] valoresV = new double[5];
                     String[] table_c = line.split(csvSplitBy);
@@ -320,7 +331,9 @@ public class ControlPrincipal {
                 }
             }
             
-            csvFile = "src/Ciclo1/Csv/drT80.csv";
+            csvFile = "/Ciclo1/Csv/drt80.csv";
+            is = getClass().getResourceAsStream(csvFile);
+            
             br = null;
             line = "";
             csvSplitBy = ";";
@@ -328,7 +341,7 @@ public class ControlPrincipal {
             try{
                 cr = this.session.createCriteria(ModelDRT80.class);
                 results = cr.list();
-                br = new BufferedReader(new FileReader(csvFile));
+                br = new BufferedReader(new InputStreamReader(is));
                 while((line = br.readLine()) != null){
                     double[] valoresV = new double[4];
                     String[] table_c = line.split(csvSplitBy);
@@ -352,7 +365,9 @@ public class ControlPrincipal {
                 }
             }
             
-            csvFile = "src/Ciclo1/Csv/eqro.csv";
+            csvFile = "/Ciclo1/Csv/eqro.csv";
+            is = getClass().getResourceAsStream(csvFile);
+            
             br = null;
             line = "";
             csvSplitBy = ";";
@@ -360,7 +375,7 @@ public class ControlPrincipal {
             try{
                 cr = this.session.createCriteria(ModelEqro.class);
                 results = cr.list();
-                br = new BufferedReader(new FileReader(csvFile));
+                br = new BufferedReader(new InputStreamReader(is));
                 while((line = br.readLine()) != null){
                     double[] valoresV = new double[3];
                     String[] table_c = line.split(csvSplitBy);
@@ -384,7 +399,9 @@ public class ControlPrincipal {
                 }
             }
             
-            csvFile = "src/Ciclo1/Csv/eqrs.csv";
+            csvFile = "/Ciclo1/Csv/eqrs.csv";
+            is = getClass().getResourceAsStream(csvFile);
+            
             br = null;
             line = "";
             csvSplitBy = ";";
@@ -392,7 +409,7 @@ public class ControlPrincipal {
             try{
                 cr = this.session.createCriteria(ModelEqrs.class);
                 results = cr.list();
-                br = new BufferedReader(new FileReader(csvFile));
+                br = new BufferedReader(new InputStreamReader(is));
                 while((line = br.readLine()) != null){
                     double[] valoresV = new double[3];
                     String[] table_c = line.split(csvSplitBy);
@@ -452,6 +469,14 @@ public class ControlPrincipal {
     public void setSession(Session session) {
         this.session = session;
     }
+
+	public ControlConverte getControlConverte() {
+		return controlConverte;
+	}
+
+	public void setControlConverte(ControlConverte controlConverte) {
+		this.controlConverte = controlConverte;
+	}
 }
 
 

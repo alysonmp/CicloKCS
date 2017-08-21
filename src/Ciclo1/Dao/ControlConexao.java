@@ -25,7 +25,7 @@ public class ControlConexao {
     
     public ControlConexao() {
         try {
-            NetworkServerControl server = new NetworkServerControl(InetAddress.getByName("localhost"),1527);
+            NetworkServerControl server = new NetworkServerControl(InetAddress.getByName("localhost"),1528);
             server.start(null);
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             conn = DriverManager.getConnection(dbURL);

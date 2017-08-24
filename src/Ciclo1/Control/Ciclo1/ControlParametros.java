@@ -15,12 +15,17 @@ import org.hibernate.Session;
 public class ControlParametros {
     
     private double Tcon, TbolA, yii, TorvA, xii, Pcon, TbolB, TorvB, Beff, Pref, Tref, T1max, Teff;
+    private String mensagem = "";
     
     public ControlParametros(double P1, double Tf, double Pf, double zi, double Tcon, Session session, ControlPrincipal ctrPrincipal){
         ControlPBolha pBolha = new ControlPBolha(Tcon, zi, session);
         Pcon = pBolha.getPbol();
         
         ControlTBolha tBolha = new ControlTBolha(P1, zi, session);
+        if(!tBolha.getMensagem().equals("")) {
+	        	mensagem = tBolha.getMensagem();
+	        	return;
+        }
         TbolA = tBolha.getTbol();
         yii = tBolha.getYi();
         
@@ -128,4 +133,12 @@ public class ControlParametros {
     public void setTeff(double Teff) {
         this.Teff = Teff;
     }
+
+	public String getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
 }

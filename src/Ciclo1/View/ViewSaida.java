@@ -15,32 +15,32 @@ import Ciclo1.Control.ControlPrincipal;
 public class ViewSaida extends JFrame{
 
 	//LABELS
+	JLabel lblWt = new JLabel("<html>W<sub>t</sub></html>");
+	JLabel lblWn = new JLabel("<html>W<sub>n</sub></html>");
+	JLabel lblWb = new JLabel("<html>W<sub>b</sub></html>");
+	JLabel lblQcon = new JLabel("<html>Q<sub>con</sub></html>");
+	JLabel lblAevp = new JLabel("<html>A<sub>evp</sub></html>");
+	JLabel lblAcon = new JLabel("<html>A<sub>con</sub></html>");
 	private JLabel lblEc = new JLabel("Ec: ");
-    private JLabel lblQcon = new JLabel("Qcon: ");
-    private JLabel lblQLHR = new JLabel("QLHR: ");
-    private JLabel lblQHHR = new JLabel("QHHR: ");
-    private JLabel lblWt = new JLabel("Wt: ");
-    private JLabel lblWn = new JLabel("Wn: ");
-    private JLabel lblWb = new JLabel("Wb: ");
-    private JLabel lblAcon = new JLabel("Acon: ");
-    private JLabel lblAevp = new JLabel("Aevp: ");
-    private JLabel lblALHR = new JLabel("ALHR: ");
-    private JLabel lblAHHR = new JLabel("AHHR: ");
+    private JLabel lblQLHR = new JLabel("<html>Q<sub>LHR</sub></html>");
+    private JLabel lblQHHR = new JLabel("<html>Q<sub>HHR</sub></html>");
+    private JLabel lblALHR = new JLabel("<html>A<sub>LHR</sub></html>");
+    private JLabel lblAHHR = new JLabel("<html>A<sub>HHR</sub></html>");
     private JLabel lblAT = new JLabel("AT: ");
     
     //FIELDS
-    private JLabel txtEc = new JLabel("0%");
-    private JLabel txtQcon = new JLabel("0");
-    private JLabel txtQLHR = new JLabel("0");
-    private JLabel txtQHHR = new JLabel("0");
-    private JLabel txtWt = new JLabel("0");
-    private JLabel txtWn = new JLabel("0");
-    private JLabel txtWb = new JLabel("0");
-    private JLabel txtAcon = new JLabel("0");
-    private JLabel txtAevp = new JLabel("0");
-    private JLabel txtALHR = new JLabel("0");
-    private JLabel txtAHHR = new JLabel("0");
-    private JLabel txtAT = new JLabel("0");
+    private JLabel txtEc = new JLabel("0 %");
+    private JLabel txtQcon = new JLabel("0 kJ/s");
+    private JLabel txtQLHR = new JLabel("0 kJ/s");
+    private JLabel txtQHHR = new JLabel("0 kJ/s");
+    private JLabel txtWt = new JLabel("0 kW");
+    private JLabel txtWn = new JLabel("0 kW");
+    private JLabel txtWb = new JLabel("0 kW");
+    private JLabel txtAcon = new JLabel("0  m²");
+    private JLabel txtAevp = new JLabel("0  m²");
+    private JLabel txtALHR = new JLabel("0  m²");
+    private JLabel txtAHHR = new JLabel("0  m²");
+    private JLabel txtAT = new JLabel("0  m²");
 	
 	JPanel painelSaida = new JPanel();
 	

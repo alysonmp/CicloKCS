@@ -15,12 +15,18 @@ public class ControlTBolha {
     
     private double zj, erro, Te, DT, teste, Tbol, yi;
     private ControlConequi conequi;
+    private String mensagem = "";
     
     public ControlTBolha(double P, double zi, Session session){
         zj = 1-zi;
         erro = 1;
 
-        Te = new ControlT_Ref(P, zi, session).getTref();
+        ControlT_Ref tref = new ControlT_Ref(P, zi, session);
+        if(!tref.getMensagem().equals("")) {
+        		mensagem = tref.getMensagem();
+        		return;
+        }
+        	Te = tref.getTref();
         DT=0.15*Te;
         
         while(erro > 0.0001){
@@ -64,4 +70,12 @@ public class ControlTBolha {
     public void setYi(double yi) {
         this.yi = yi;
     }
+
+	public String getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
 }

@@ -16,6 +16,7 @@ public class ControlT_Ref {
     
     double P, Te, erro, DT, burbuja, Tref;
     private ControlPdeVapor pdevapor;
+    private String mensagem = "";
     
     public ControlT_Ref(double P, double x, Session session){
         this.P = P;
@@ -48,7 +49,14 @@ public class ControlT_Ref {
             Te = 405.4-100;
             erro = 1;
             DT = 80;
+            int cont = 0;
             while(erro > 0.0001){
+            		cont++;
+            		if(cont == 10000) {
+            			mensagem = "Não foi possível atingir a convergência";
+            			return;
+            		}
+            	
                 pdevapor = new ControlPdeVapor(Te, x, session);
                 burbuja = pdevapor.getPsi() - P;
                 erro = Math.abs((pdevapor.getPsi()-P)/pdevapor.getPsi());
@@ -79,4 +87,12 @@ public class ControlT_Ref {
     public void setTref(double Tref) {
         this.Tref = Tref;
     }
+
+	public String getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
 }

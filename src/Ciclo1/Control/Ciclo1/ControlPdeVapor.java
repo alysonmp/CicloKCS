@@ -18,6 +18,7 @@ public class ControlPdeVapor {
     
     double Psi, Psj, P, Pmax, Pmin, erro, burbuja, Pest, DP;
     private Session session;
+    private String mensagem = "";
     
     public ControlPdeVapor(double T, double x, Session session){
         this.session = session;
@@ -56,7 +57,14 @@ public class ControlPdeVapor {
             Pest = P;
             DP = P*1/100;
             
+            int cont = 0;
+            
             while(erro >= 0.00001){
+            		cont++;
+            		if(cont == 10000) {
+            			mensagem = "Não foi possível atingiar a convergência";
+            			return;
+            		}
                 fug = new ControlFug(T, Pest, x);
                 erro = Math.abs(fug.getFil()-fug.getFiv());
                 burbuja = fug.getFil()-fug.getFiv();
@@ -110,6 +118,14 @@ public class ControlPdeVapor {
     public void setPsj(double Psj) {
         this.Psj = Psj;
     }
+
+	public String getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
 
     
 }

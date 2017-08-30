@@ -20,12 +20,12 @@ import org.apache.derby.drda.NetworkServerControl;
  */
 public class ControlConexao {
     
-    private String dbURL = "jdbc:derby://localhost:1528/3e_KCS;create=true;user=root;password=root";
+    private String dbURL = "jdbc:derby://localhost:21256/3e_KCS;create=true;user=root;password=root";
     private Connection conn = null;
     
     public ControlConexao() {
         try {
-            NetworkServerControl server = new NetworkServerControl(InetAddress.getByName("localhost"),1528);
+            NetworkServerControl server = new NetworkServerControl(InetAddress.getByName("localhost"),21256);
             server.start(null);
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             conn = DriverManager.getConnection(dbURL);

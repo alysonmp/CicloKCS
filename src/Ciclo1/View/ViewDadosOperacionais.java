@@ -27,13 +27,13 @@ public class ViewDadosOperacionais extends JPanel{
     private JLabel lblBeff = new JLabel("<html>&eta;<sub>B</sub></html>");
 	
     //FIELDS
-    private JTextField txtT1 = new JTextField("20",10);
-    private JTextField txtP1 = new JTextField("20");
-    private JTextField txtPP = new JTextField("2");
-    private JTextField txtTcon = new JTextField("298.15");
-    private JTextField txtzi = new JTextField("0.8");
-    private JTextField txtBeff = new JTextField("0.8");
-    private JTextField txtTeff = new JTextField("0.8");
+    private JTextField txtT1 = new JTextField("0.0",10);
+    private JTextField txtP1 = new JTextField("0.0");
+    private JTextField txtPP = new JTextField("0.0");
+    private JTextField txtTcon = new JTextField("0.0");
+    private JTextField txtzi = new JTextField("0.0");
+    private JTextField txtBeff = new JTextField("0.0");
+    private JTextField txtTeff = new JTextField("0.0");
     
     //COMBOS
     private String[] pressoes = {"bar", "kPa", "atm"};

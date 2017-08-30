@@ -73,7 +73,7 @@ public class Start {
         double zi = Double.parseDouble(ctrPrincipal.getViewPrincipal().getDadosOp().getTxtzi().getText());
         
         double Beff = Double.parseDouble(ctrPrincipal.getViewPrincipal().getDadosOp().getTxtBeff().getText());
-        	double Teff = Double.parseDouble(ctrPrincipal.getViewPrincipal().getDadosOp().getTxtTeff().getText());
+        double Teff = Double.parseDouble(ctrPrincipal.getViewPrincipal().getDadosOp().getTxtTeff().getText());
         
         double P2 = P1;
         //Pf = 4000/100; //%bar

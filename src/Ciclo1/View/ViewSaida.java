@@ -36,11 +36,11 @@ public class ViewSaida extends JFrame{
     private JLabel txtWt = new JLabel("0 kW");
     private JLabel txtWn = new JLabel("0 kW");
     private JLabel txtWb = new JLabel("0 kW");
-    private JLabel txtAcon = new JLabel("0  m²");
-    private JLabel txtAevp = new JLabel("0  m²");
-    private JLabel txtALHR = new JLabel("0  m²");
-    private JLabel txtAHHR = new JLabel("0  m²");
-    private JLabel txtAT = new JLabel("0  m²");
+    private JLabel txtAcon = new JLabel("0 m²");
+    private JLabel txtAevp = new JLabel("0 m²");
+    private JLabel txtALHR = new JLabel("0 m²");
+    private JLabel txtAHHR = new JLabel("0 m²");
+    private JLabel txtAT = new JLabel("0 m²");
 	
 	JPanel painelSaida = new JPanel();
 	

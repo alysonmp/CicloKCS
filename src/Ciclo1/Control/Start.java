@@ -36,8 +36,8 @@ public class Start {
         this.session = session;
         
         double P1;
-        if(!ctrPrincipal.getViewPrincipal().getDadosOp().getComboP1().getSelectedItem().toString().equals("kPa")){
-            P1 = converte.converte(ctrPrincipal.getViewPrincipal().getDadosOp().getComboP1().getSelectedItem().toString(), "kPa", Double.parseDouble(ctrPrincipal.getViewPrincipal().getDadosOp().getTxtP1().getText()));
+        if(!ctrPrincipal.getViewPrincipal().getDadosOp().getComboP1().getSelectedItem().toString().equals("bar")){
+            P1 = converte.converte(ctrPrincipal.getViewPrincipal().getDadosOp().getComboP1().getSelectedItem().toString(), "bar", Double.parseDouble(ctrPrincipal.getViewPrincipal().getDadosOp().getTxtP1().getText()));
         }else{
             P1 = Double.parseDouble(ctrPrincipal.getViewPrincipal().getDadosOp().getTxtP1().getText());
         }
@@ -79,6 +79,10 @@ public class Start {
         //Pf = 4000/100; //%bar
 
         ControlParametros parametros = new ControlParametros(P1, Tf, Pf, zi, Tcon, this.session, ctrPrincipal);
+        if(!parametros.getMensagem().equals("")){
+            JOptionPane.showMessageDialog(null, parametros.getMensagem(),"Error",0);
+            return;
+        }
         
         double DT1=(parametros.getTorvA()-parametros.getTbolA())-1;
         
@@ -216,17 +220,17 @@ public class Start {
         ViewSaida saida = new ViewSaida(ctrPrincipal);
         
         saida.getTxtEc().setText(round(ec,3)+"%");
-        saida.getTxtQcon().setText(round(Qcon,3)+"");
-        saida.getTxtQLHR().setText(round(QLHR,3)+"");
-        saida.getTxtQHHR().setText(round(QHHR,3)+"");
-        saida.getTxtWt().setText(round(Wt,3)+"");
-        saida.getTxtWn().setText(round(Wn,3)+"");
-        saida.getTxtWb().setText(round(Wb,3)+"");
-        saida.getTxtAcon().setText(round(Acon,3)+"");
-        saida.getTxtAevp().setText(round(Aevp,3)+"");
-        saida.getTxtALHR().setText(round(ALHR,3)+"");
-        saida.getTxtAHHR().setText(round(AHHR,3)+"");
-        saida.getTxtAT().setText(round(AT,3)+"");
+        saida.getTxtQcon().setText(round(Qcon,3)+" kJ/s");
+        saida.getTxtQLHR().setText(round(QLHR,3)+" kJ/s");
+        saida.getTxtQHHR().setText(round(QHHR,3)+" kJ/s");
+        saida.getTxtWt().setText(round(Wt,3)+" kW");
+        saida.getTxtWn().setText(round(Wn,3)+" kW");
+        saida.getTxtWb().setText(round(Wb,3)+" kW");
+        saida.getTxtAcon().setText(round(Acon,3)+" m²");
+        saida.getTxtAevp().setText(round(Aevp,3)+" m²");
+        saida.getTxtALHR().setText(round(ALHR,3)+" m²");
+        saida.getTxtAHHR().setText(round(AHHR,3)+" m²");
+        saida.getTxtAT().setText(round(AT,3)+" m²");
     }
     
     public double round(double value, int places) {
